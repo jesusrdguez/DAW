@@ -1,0 +1,10 @@
+{
+  "version": 3,
+  "sourceRoot": "",
+  "sources": [
+    "../scss/estilo.scss"
+  ],
+  "names": [],
+  "mappings": "AAEA;EACI,OAHY",
+  "file": "estilo.css"
+}

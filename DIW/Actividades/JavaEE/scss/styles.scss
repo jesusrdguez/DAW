@@ -1,16 +1,20 @@
-@charset "UTF-8";
 /* Definición de una nueva fuente personalizada */
 @font-face {
   font-family: MiNuevaFuente1;
   src: url(../fuentes/minecraft_font.ttf); /* URL de la fuente TTF */
   src: url(../fuentes/MinecraftTen-VGORe.ttf); /* URL de otra fuente TTF */
 }
+
 /* Estilos generales para el cuerpo del documento */
 body {
   font-family: sans-serif, Arial, Helvetica; /* Fuentes de respaldo */
   margin: 0; /* Elimina los márgenes predeterminados */
   padding: 0; /* Elimina los rellenos predeterminados */
 }
+
+// Hacer que el tamaño del logo esté a la izquierda y
+// de un tamaño más reducido
+// Coger la puta imagen y ponerla más pequeña
 
 /* Estilos para el encabezado */
 header {
@@ -19,22 +23,30 @@ header {
   align-items: center; /* Alinea los elementos verticalmente al centro */
   font-weight: bold; /* Texto en negrita */
   height: 5em;
+
+  a.logo {
+    img {
+      width: 75px;
+      height: 75px;
+    }
+  }
+
   /* Estilos para los enlaces dentro de la clase 'enlaces' */
-}
-header a.logo img {
-  width: 75px;
-  height: 75px;
-}
-header a {
-  padding: 1em; /* Añade relleno alrededor del texto */
-  margin: 1em; /* Añade margen entre los enlaces */
+  a {
+    padding: 1em; /* Añade relleno alrededor del texto */
+    margin: 1em; /* Añade margen entre los enlaces */
+  }
 }
 
 /* Estilos para la primera sección */
 .seccion1 {
   font-family: MiNuevaFuente1; /* Usa la fuente personalizada */
   height: 1100px; /* Altura de la sección */
-  background-image: linear-gradient(rgba(255, 255, 255, 0.212), rgba(255, 255, 255, 0.189)), url("../imagenes/background1.webp"); /* Imagen de fondo con gradiente */
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.212),
+      rgba(255, 255, 255, 0.189)
+    ),
+    url("../imagenes/background1.webp"); /* Imagen de fondo con gradiente */
   background-repeat: no-repeat; /* No repetir la imagen de fondo */
   background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el contenedor */
   background-position: center center; /* Posición centrada de la imagen de fondo */
@@ -108,9 +120,11 @@ header a {
 }
 
 /* Estilos para el campo de entrada de correo electrónico */
-.email input {
-  width: 100%; /* Ancho completo */
-  background: transparent; /* Fondo transparente */
+.email {
+  input {
+    width: 100%; /* Ancho completo */
+    background: transparent; /* Fondo transparente */
+  }
 }
 
 /* Estilos para las condiciones y términos */
@@ -120,43 +134,56 @@ header a {
 }
 
 /* Estilos para el botón de suscripción */
-.suscripcion a {
-  background-color: black; /* Color de fondo negro */
-  color: white; /* Color del texto blanco */
-  padding: 10px 20px; /* Añade relleno alrededor del texto */
-  text-decoration: none; /* Elimina la decoración del enlace */
-  border-radius: 5px; /* Borde redondeado */
-}
-.suscripcion a:hover {
-  background-color: #333; /* Cambia el color de fondo al pasar el ratón */
+.suscripcion {
+  a {
+    background-color: black; /* Color de fondo negro */
+    color: white; /* Color del texto blanco */
+    padding: 10px 20px; /* Añade relleno alrededor del texto */
+    text-decoration: none; /* Elimina la decoración del enlace */
+    border-radius: 5px; /* Borde redondeado */
+  }
+
+  a:hover {
+    background-color: #333; /* Cambia el color de fondo al pasar el ratón */
+  }
 }
 
 /* Estilos al pasar el ratón sobre los enlaces de redes sociales */
-.pie-pagina .grupo-1 .red-social a {
-  display: inline-block; /* Muestra como bloque en línea */
-  text-decoration: none; /* Elimina la decoración del enlace */
-  width: 45px; /* Ancho */
-  height: 45px; /* Altura */
-  line-height: 45px; /* Altura de línea */
-  color: #fff; /* Color del texto blanco */
-  margin-right: 10px; /* Margen derecho */
-  background-color: #0d2033; /* Color de fondo */
-  text-align: center; /* Alinea el texto al centro */
-  transition: all 300ms ease; /* Transición suave de todos los estilos */
-}
-.pie-pagina .grupo-1 .red-social a:hover {
-  color: aqua; /* Cambia el color del texto al pasar el ratón */
+.pie-pagina {
+  .grupo-1 {
+    .red-social {
+      a {
+        display: inline-block; /* Muestra como bloque en línea */
+        text-decoration: none; /* Elimina la decoración del enlace */
+        width: 45px; /* Ancho */
+        height: 45px; /* Altura */
+        line-height: 45px; /* Altura de línea */
+        color: #fff; /* Color del texto blanco */
+        margin-right: 10px; /* Margen derecho */
+        background-color: #0d2033; /* Color de fondo */
+        text-align: center; /* Alinea el texto al centro */
+        transition: all 300ms ease; /* Transición suave de todos los estilos */
+      }
+
+      a:hover {
+        color: aqua; /* Cambia el color del texto al pasar el ratón */
+      }
+    }
+  }
 }
 
 /* Estilos para el grupo 2 del pie de página */
-.pie-pagina .grupo-2 {
-  background-color: #0a1a2a; /* Color de fondo */
-  padding: 15px 10px; /* Añade relleno alrededor del contenido */
-  text-align: center; /* Alinea el texto al centro */
-  color: #fff; /* Color del texto blanco */
-}
-.pie-pagina small {
-  font-size: 15px; /* Tamaño de fuente pequeño */
+.pie-pagina {
+  .grupo-2 {
+    background-color: #0a1a2a; /* Color de fondo */
+    padding: 15px 10px; /* Añade relleno alrededor del contenido */
+    text-align: center; /* Alinea el texto al centro */
+    color: #fff; /* Color del texto blanco */
+  }
+
+  small {
+    font-size: 15px; /* Tamaño de fuente pequeño */
+  }
 }
 
 /* Estilos para la selección */
@@ -180,5 +207,3 @@ header a {
   width: 650px; /* Ancho de la imagen al pasar el ratón */
   transition-duration: 0.5s; /* Duración de la transición */
 }
-
-/*# sourceMappingURL=styles.css.map */
