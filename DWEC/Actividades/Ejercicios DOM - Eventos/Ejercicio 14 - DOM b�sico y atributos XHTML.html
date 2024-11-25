@@ -1,0 +1,116 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio14/ejercicio14.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Ejercicio 14 - DOM b�sico y atributos XHTML</title>
+    <script type="text/javascript">
+      window.onload = function () {
+        /**
+         * El bucle recorre todos los enlaces de la página.
+         * Luego asignamos la función 'muestraOculta' al
+         * evento 'onclick' del enlace pulsado.
+         */
+        var enlaces = document.getElementsByTagName("a");
+        for (var i = 0; i < enlaces.length; i++) {
+          enlaces[i].onclick = muestraOculta;
+        }
+      };
+
+      /**
+       * 'this.id' hace referencia al enlace que se ha pulsado,
+       * por lo que guardamos en una variable el id del enlace.
+       */
+      function muestraOculta() {
+        var idEnlace = this.id;
+        
+        /**
+         * '.split()' hace que se separe el id de nuestro enlace,
+         * señalando que nuestro separador será el guión bajo.
+         * Luego procede a guardarlo en un array llamado 'trozos'.
+         */
+        var trozos = idEnlace.split("_");
+
+        /**
+         * Del array 'trozos' queremos coger su segundo dato,
+         * ya que el primer dato se trata del string 'contenido'.
+         * Para ello indicamos '[1]' y lo guardamos seguidamente
+         * en la variable 'numero'.
+         */
+        var numero = trozos[1];
+
+        /**
+         * Ahora, según el número del id del enlace tendremos un
+         * número entre el 1 y el 3. El cual hemos separado, y
+         * guardado en un array, luego el segundo dato del array
+         * en una variable, y ahora, lo estamos utilizando
+         * para seleccionar el contenido correspondiente al
+         * número del id del link pulsado, guárdandolo en
+         * la variable 'parrafo'.
+         */
+        var parrafo = document.getElementById("contenidos_" + numero);
+
+        /**
+         * En el switch, cuando utilizamos this, seguimos
+         * haciendo referencia al enlace seleccionado por
+         * el usuario.
+         */
+        switch (parrafo.style.display) {
+          case "none":
+            parrafo.style.display = "block";
+            this.innerHTML = "Ocultar contenidos";
+            break;
+          case "block":
+          case "":
+            parrafo.style.display = "none";
+            this.innerHTML = "Mostrar contenidos";
+            break;
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p id="contenidos_1">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis
+      enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+      commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+      vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id,
+      aliquam vitae, ultrices porttitor, pede. Nullam sit amet nisl elementum
+      elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut,
+      rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio
+      urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit
+      amet, consectetuer adipiscing elit. Duis scelerisque.
+    </p>
+    <a id="enlace_1" href="#">Ocultar contenidos</a>
+
+    <br />
+
+    <p id="contenidos_2">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis
+      enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+      commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+      vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id,
+      aliquam vitae, ultrices porttitor, pede. Nullam sit amet nisl elementum
+      elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut,
+      rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio
+      urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit
+      amet, consectetuer adipiscing elit. Duis scelerisque.
+    </p>
+    <a id="enlace_2" href="#">Ocultar contenidos</a>
+
+    <br />
+    <p id="contenidos_3">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis
+      enim vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+      commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+      vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id,
+      aliquam vitae, ultrices porttitor, pede. Nullam sit amet nisl elementum
+      elit convallis malesuada. Phasellus magna sem, semper quis, faucibus ut,
+      rhoncus non, mi. Duis pellentesque, felis eu adipiscing ullamcorper, odio
+      urna consequat arcu, at posuere ante quam non dolor. Lorem ipsum dolor sit
+      amet, consectetuer adipiscing elit. Duis scelerisque.
+    </p>
+    <a id="enlace_3" href="#">Ocultar contenidos</a>
+  </body>
+</html>

@@ -1,0 +1,119 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Cálculo de SubRed</title>
+  </head>
+
+  <body>
+    <center><h2>Cálculo de SUBRED</h2></center>
+    <br />
+    <div id="div_ip">
+      <p>
+        Introduce la IP:
+        <input
+          type="text"
+          id="ip1"
+          name="ip1"
+          size="2"
+          maxlength="3"
+          value="172"
+        />
+        .
+        <input
+          type="text"
+          id="ip2"
+          name="ip2"
+          size="2"
+          maxlength="3"
+          value="26"
+        />
+        .
+        <input
+          type="text"
+          id="ip3"
+          name="ip3"
+          size="2"
+          maxlength="3"
+          value="2"
+        />
+        .
+        <input
+          type="text"
+          id="ip4"
+          name="ip4"
+          size="2"
+          maxlength="3"
+          value="15"
+        />
+      </p>
+    </div>
+    <div id="div_masc">
+      <p>
+        Máscara SubRed:
+        <input
+          type="text"
+          id="imasc1"
+          name="imasc1"
+          size="2"
+          maxlength="3"
+          value="255"
+        />
+        .
+        <input
+          type="text"
+          id="imasc2"
+          name="imasc2"
+          size="2"
+          maxlength="3"
+          value="255"
+        />
+        .
+        <input
+          type="text"
+          id="imasc3"
+          name="imasc3"
+          size="2"
+          maxlength="3"
+          value="240"
+        />
+        .
+        <input
+          type="text"
+          id="imasc4"
+          name="imasc4"
+          size="2"
+          maxlength="3"
+          value="0"
+        />
+      </p>
+    </div>
+    <br />
+    <div id="div_btCalcular_Red">
+      <input id="btCalcular_Red" type="button" value="Calcular Red" />
+    </div>
+    <br /><br />
+    <div id="div_Red">
+      <table border="1">
+        <tr align="center">
+          <td>Dirección de Red</td>
+          <td>Difusión</td>
+          <td>Nº SubRedes</td>
+          <td>Host´s por SubRed</td>
+        </tr>
+        <tr>
+          <td><input type="text" id="red" readonly /></td>
+          <td><input type="text" id="difusion" readonly /></td>
+          <td><input type="text" id="nsubredes" readonly size="8" /></td>
+          <td><input type="text" id="nhost" readonly size="8" /></td>
+        </tr>
+      </table>
+    </div>
+    <br /><br />
+    <center><h2>Tabla de SubRedes</h2></center>
+    <br />
+    <div id="div_tablaSubredes" class="d_Tabla"></div>
+    <br /><br />
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>

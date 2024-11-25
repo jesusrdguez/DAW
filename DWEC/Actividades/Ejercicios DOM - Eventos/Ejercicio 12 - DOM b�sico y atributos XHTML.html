@@ -1,0 +1,64 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio12/ejercicio12.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Ejercicio 12 - DOM b�sico y atributos XHTML</title>
+    <style type="text/css">
+      .oculto {
+        display: none;
+      }
+      .visible {
+        display: inline;
+      }
+    </style>
+
+    <script type="text/javascript"></script>
+  </head>
+  <body>
+    <p id="texto">
+      Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Sed mattis enim
+      vitae orci. Phasellus libero. Maecenas nisl arcu, consequat congue,
+      commodo nec, commodo ultricies, turpis. Quisque sapien nunc, posuere
+      vitae, rutrum et, luctus at, pede. Pellentesque massa ante, ornare id,
+      aliquam vitae, ultrices porttitor, pede.
+      <span id="adicional" class="oculto"
+        >Nullam sit amet nisl elementum elit convallis malesuada. Phasellus
+        magna sem, semper quis, faucibus ut, rhoncus non, mi. Duis pellentesque,
+        felis eu adipiscing ullamcorper, odio urna consequat arcu, at posuere
+        ante quam non dolor. Lorem ipsum dolor sit amet, consectetuer adipiscing
+        elit. Duis scelerisque. Donec lacus neque, vehicula in, eleifend vitae,
+        venenatis ac, felis. Donec arcu. Nam sed tortor nec ipsum aliquam
+        ullamcorper. Duis accumsan metus eu urna. Aenean vitae enim. Integer
+        lacus. Vestibulum venenatis erat eu odio. Praesent id metus.</span
+      >
+    </p>
+    <a
+      id="enlace"
+      onclick="if (!window.__cfRLUnblockHandlers) return false; muestra(); return false;"
+      >Seguir leyendo</a
+    >
+  </body>
+  <script type="text/javascript">
+    var enlace = document.getElementById("enlace");
+    enlace.onclick = muestra; // El usuario debe de clickar sobre el enlace
+
+    function muestra() {
+        /**
+         * Buscamos el texto, que está oculto y, deseamos mostrar al usuario.
+         * Utilizamos un if para comprobar si el elemento está oculto o no.
+         * En caso de que lo esté, se ocultará al pulsar el enlace, en el caso
+         * de que el elemento esté oculto, al pulsar el enlace se mostrará el 
+         * texto.
+         */
+      var texto = document.getElementById("adicional");
+      if (texto.style.display == "inline") {
+        texto.style.display = "none";
+      } else {
+        texto.style.display = "inline";
+      }
+      document.getElementById("enlace").style.display="none";
+    }
+  </script>
+</html>

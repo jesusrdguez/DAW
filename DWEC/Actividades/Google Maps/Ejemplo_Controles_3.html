@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	<meta charset="utf-8">
+  	<style type="text/css">
+  	/* TENEMOS QUE DARLE UN TAMAÑO AL DIV QUE CONTIENE EL MAPA. SI NO, NO SE VERÁ  */
+      #divmapa {
+      	width: 700px;
+      	height: 700px;
+      	border: 1px solid blue; 
+     	}
+     	
+     	#capaElfica {  /* Este div (capa) sólo sirve para ocultar  */
+    /* 		visibility: hidden;   */
+   			display: none;
+     	}
+     	#datosDir {
+     		border: 2px solid red;
+     		background-color: pink;
+     		padding: 1%;
+     		width: 99%;
+     	}
+     	#datosDir span {
+     		font-size: larger;
+     		font-weight: bold;
+     		color: maroon;
+     	}
+    </style>
+  	
+    <title>API v3 de Google Maps. Ejemplo Controles 2</title>
+    
+    <script type="text/javascript" 
+    	src="http://maps.google.com/maps/api/js?sensor=false">
+    </script>
+    
+    <script type="text/javascript">
+/*
+Hasta ahora, hemos iniciado los valores directamente en el MapOptions para iniciar el mapa. 
+Después de que se hayan cargado, podemos modificarlos con el método setOptions. 
+Podemos modificar la mayoría de las propiedades.  
+Solo tres no son modificables: noClear, backgroundColor y disableDefaultUI, 
+ por lo que debemos estar seguros qué debemos hacer con ellos al inicio.  
+El setOptions es de gran utilidad para interactuar con el usuario. 
+*/
+			//  Hacemos que mapa sea una variable golbal. Para poder accederla desde
+			//   fuera de CargarMapa:
+      var mapa;
+      
+      function CargarMapa() {
+
+      	//  Creamos las opciones. En este ejemplo hacemos que NO se muestre ningún cotrol
+      	//  (Disabling the default UI)
+      	var opciones = {
+      		center: new google.maps.LatLng(37.386719, -5.981365), // nos colocamos en Sevilla
+      		zoom: 17,
+    			
+    			mapTypeId: google.maps.MapTypeId.SATELLITE , 
+          backgroundColor: '#ffffff' , 
+          noClear: true , 
+          disableDefaultUI: true , 
+          keyboardShortcuts: false , 
+          disableDoubleClickZoom: true , 
+          draggable: false , 
+          scrollwheel: false , 
+          draggableCursor: 'move' , 
+          draggingCursor: 'move' , 
+          
+          mapTypeControl: true , 
+          mapTypeControlOptions: {
+          	style: google.maps.MapTypeControlStyle.HORIZONTAL_MENU , 
+            position: google.maps.ControlPosition.TOP_LEFT , 
+            mapTypeIds: [
+            	google.maps.MapTypeId.SATELLITE
+            ]
+        	} , 
+          navigationControl: true , 
+          streetViewControl: true , 
+          navigationControlOptions: {
+          	position: google.maps.ControlPosition.TOP_RIGHT , 
+            style: google.maps.NavigationControlStyle.ANDROID
+        	} , 
+          scaleControl: true , 
+          scaleControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT , 
+            style: google.maps.ScaleControlStyle.DEFAULT
+        	}
+				};
+				
+				//  Dibujamos el mapa:
+      	mapa = new google.maps.Map(document.getElementById("divmapa"), opciones);
+      	
+      }  //  CargarMapa
+      
+      
+      function CambiarOpciones() {
+      	mapa.setOptions({
+        	zoom: 14 , 
+          center: new google.maps.LatLng(40.426528, -3.700557) , 
+          mapTypeId: google.maps.MapTypeId.TERRAIN , 
+          
+          keyboardShortcuts: true , 
+          disableDoubleClickZoom: false , 
+          draggable: true , 
+          scrollwheel: true , 
+          draggableCursor: 'hand' , 
+          draggingCursor: 'hand' , 
+          
+          mapTypeControlOptions: {
+            style: google.maps.MapTypeControlStyle.DROPDOWN_MENU , 
+            position: google.maps.ControlPosition.TOP_RIGHT , 
+            mapTypeIds: [
+                google.maps.MapTypeId.ROADMAP , 
+                google.maps.MapTypeId.SATELLITE
+            ]
+        	} , 
+ 
+          navigationControlOptions: {
+            position: google.maps.ControlPosition.TOP_LEFT , 
+            style: google.maps.NavigationControlStyle.ZOOM_PAN
+        	} , 
+          
+          scaleControlOptions: {
+          	position: google.maps.ControlPosition.BOTTOM_LEFT , 
+            style: google.maps.ScaleControlStyle.DEFAULT
+        	}
+    		});
+    		
+    		//  Le añado una ventana de info. El contenido es un objeto DOM:
+    		infowindow = new google.maps.InfoWindow({
+  				map: mapa,
+  				position: mapa.getCenter(),
+  				content: document.getElementById("datosDir") 
+  			});
+      }
+      
+      window.onload = CargarMapa;
+      
+    </script>
+  </head>
+  
+  <body>
+    <h3>API v3 de Google Maps. Ejemplo Controles 2</h3>
+    <h5>En esta versión añadimos o no, controles al mapa según nuestro interés</h5>
+    <p>
+    	<button onclick="CambiarOpciones()">Cambiar las Opciones del Mapa</button>
+    </p>
+    <div id="capaElfica">
+    	<div id="datosDir">
+    		<span>Aquí viví en el año 2000</span> <br>
+    		Calle Churrca nº 2. Madrid
+    	</div>
+    </div>
+    <p>
+    	<div id="divmapa">
+    		Aquí pondremos el mapa
+    	</div>
+    </p>
+    
+  </body>
+  
+</html>

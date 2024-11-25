@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio15/ejercicio15.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Ejercicio 15 - Informaci�n sobre eventos</title>
+    <style type="text/css">
+      body {
+        font-family: arial, helvetica;
+      }
+      #info {
+        width: 160px;
+        border: thin solid silver;
+        padding: 0.5em;
+        position: fixed;
+      }
+      #info h1 {
+        margin: 0;
+      }
+    </style>
+    <script type="text/javascript">
+      /**
+       * Nuestra función detecta cuando se pulsa cuando
+       * se pulsan las teclas que no son especiales. Estas
+       * son: shift, tab, ctrl, alt, etc.
+       */
+      function muestraInformacion(mensaje) {
+        var tipoEvento = event.type;
+        // Sacar por la consola el tipo de evento que ha sucedido.
+        // Esto es para ir depurando el código.
+        console.log(tipoEvento);
+
+        var cuadrao = document.getElementById("info");
+        /**
+         * Creamos un switch dependiendo de la acción realizada
+         * por el usuario.
+         */
+        switch (tipoEvento) {
+          case "mousemove":
+            mensaje[0] = "Ratón";
+            mensaje[1] = "Navegador " + "[" + event.clientX + ", " + event.clientY + "]";
+            mensaje[2] = "Pagina " + "[" + event.pageX + ", " + event.pageY + "]";
+            cuadrao.style.backgroundColor = "#FFF";
+            break;
+          // Utilizar mousedown si quiero que se muestre en amarillo
+          // al pulsar cualquier botón
+          case "click":
+            mensaje[0] = "Ratón";
+            mensaje[1] = "Navegador " + "[" + event.clientX + ", " + event.clientY + "]";
+            mensaje[2] = "Pagina " + "[" + event.pageX + ", " + event.pageY + "]";
+            cuadrao.style.backgroundColor = "#FFFFCC";
+            break;
+          case "keypress":
+            mensaje[0] = "Teclado";
+            mensaje[1] = "Carácter " + "[" + String.fromCharCode(event.charCode) + "]";
+            mensaje[2] = "Código " + "[" + event.keyCode + "]";
+            cuadrao.style.backgroundColor = "#CCE6FF";
+            break;
+        }
+
+        mensaje = [mensaje[0], mensaje[1], mensaje[2]];
+        document.getElementById("info").innerHTML =
+          "<h1>" + mensaje[0] + "</h1>";
+
+        for (var i = 1; i < mensaje.length; i++) {
+          document.getElementById("info").innerHTML +=
+            "<p>" + mensaje[i] + "</p>";
+        }
+      }
+
+      window.onload = function () {
+        var miTexto = document.getElementById("info");
+
+        miTexto.onmousedown = function (event) {
+          let shiftX = event.clientX - miTexto.getBoundingClientRect().left;
+          let shiftY = event.clientY - miTexto.getBoundingClientRect().top;
+
+          miTexto.style.position = "absolute";
+          miTexto.style.zIndex = 1000;
+
+          function moveAt(pageX, pageY) {
+            miTexto.style.left = pageX - shiftX + "px";
+            miTexto.style.top = pageY - shiftY + "px";
+            miTexto.style.backgroundColor = "#FF474C";
+          }
+
+          function onMouseMove(event) {
+            moveAt(event.pageX, event.pageY);
+          }
+
+          document.addEventListener("mousemove", onMouseMove);
+
+          miTexto.onmouseup = function () {
+            document.removeEventListener("mousemove", onMouseMove);
+            miTexto.onmouseup = null;
+          }
+        }
+
+        document.onkeypress = muestraInformacion;
+        document.onmousemove = muestraInformacion;
+        // Utilizar onmousedown si quiero que 
+        // aparezca en amarillo al pulsar cualquier 
+        // botón del ratón
+        document.onclick = muestraInformacion;
+      };
+    </script>
+  </head>
+  <body>
+    <div id="info"></div>
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+    <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  </body>
+</html>

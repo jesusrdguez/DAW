@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="initial-scale=1.0">
+	<style type="text/css">
+		/* TENEMOS QUE DARLE UN TAMAÑO AL DIV QUE CONTIENE EL MAPA. SI NO, NO SE VERÁ */
+		#divmapa {
+			width: 700px;
+			height: 700px;
+			border: 1px solid blue;
+		}
+	</style>
+
+	<title>API v3 de Google Maps. Ejemplo Básico 2</title>
+
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false" async defer></script>
+
+	<script type="text/javascript">
+		function CargarMapa() {
+			if (navigator.geolocation) {
+				// Obtener la ubicación del usuario
+				navigator.geolocation.getCurrentPosition((pos) => {
+					const latitud = pos.coords.latitude;
+					const longitud = pos.coords.longitude;
+
+					console.log(`Latitud: ${latitud}`);
+					console.log(`Longitud: ${longitud}`);
+
+					// Crear el centro del mapa con la ubicación del usuario
+					var centro = new google.maps.LatLng(latitud, longitud);
+
+					// Referencia al div donde se dibujará el mapa
+					var divMapa = document.getElementById("divmapa");
+
+					// Opciones del mapa
+					var opciones = {
+						center: centro,
+						zoom: 17,
+					};
+
+					// Dibujar el mapa
+					var mapa = new google.maps.Map(divMapa, opciones);
+
+					// Colocar un marcador en la ubicación del usuario
+					var marcador = new google.maps.Marker({
+						position: centro,
+						map: mapa,
+						title: "Tu ubicación"
+					});
+				}, (error) => {
+					console.error("Error al obtener la ubicación:", error);
+					alert("No se pudo obtener tu ubicación.");
+				});
+			} else {
+				alert("Geolocalización no soportada en este navegador.");
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<h3>API v3 de Google Maps. Ejemplo Básico 2</h3>
+	<h5>En esta versión, centramos el mapa en tu ubicación y colocamos un marcador.</h5>
+	<p>
+		<button id="btCargarMapa" onclick="CargarMapa()">Cargar Mapa</button>
+	</p>
+	<p>
+	<div id="divmapa">
+		Aquí pondremos el mapa
+	</div>
+	</p>
+</body>
+
+</html>

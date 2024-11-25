@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=x, initial-scale=1.0" />
+    <title>Videjuegos</title>
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="shortcut icon" href="assets/favicon/logo.png" type="image/x-icon">
+</head>
+
+<body>
+    <header>
+        <!-- Logo de la página -->
+        <a href="index.html" class="logo">
+            <img src="assets/favicon/logo.png" alt="logo" />
+        </a>
+
+        <!-- Barra de navegación -->
+        <nav class="enlaces">
+            <a href="index.html">INICIO</a>
+            <a href="/html/videojuegos1.html">SERVIDORES WEB</a>
+            <a href="/html/videojuegos2.html">INSTALACIÓN</a>
+        </nav>
+
+        <!-- Enlace a inicio de sesión -->
+        <a href="/html/cuenta.html" class="Inicio-Sesion">
+            <div class="cuenta">
+                <span>CUENTA</span>
+            </div>
+            <div class="imagenInicioSesion">
+                <!-- Icono de inicio de sesión -->
+                <img src="imagenes/login_icon_2023.svg" alt="Personita" />
+            </div>
+        </a>
+    </header>
+
+    <!-- Sección principal -->
+    <div class="seccion1">
+        <div class="title">
+            <p>TECHTITANS</p>
+        </div>
+        <div class="subseccion1">
+            <!-- Video de introducción -->
+            <div class="videoIntro">
+                <iframe width="560" height="315" src="https://www.youtube.com/embed/uqlUTYLnadw?si=_ECN9tWLXdcVIy-j"
+                    title="YouTube video player"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+                </iframe>
+            </div>
+            <!-- Título de noticias -->
+            <div class="subtitle">
+                NOTICIAS FRIKiS SOBRE VIDEOJUEGOS
+            </div>
+        </div>
+        <div class="seleccionar">
+            <a href="/html/videojuegos1.html" id="primera">
+                <img src="/imagenes/webpage1.png" alt="webpage-1">
+            </a>
+            <a href="/html/videojuegos2.html" id="segunda">
+                <img src="/imagenes/webpage2.png" alt="webpage-2">
+            </a>
+        </div>
+    </div>
+
+    <!-- Sección de selección de noticias -->
+    <div class="seleccionNoticia">
+
+    </div>
+
+    <!-- Sección de suscripción -->
+    <div class="seccion2">
+        <div class="subseccion2">
+            <div class="recibir">
+                <!-- Mensaje de suscripción -->
+                <span>Recibe las últimas noticias más frikis</span>
+            </div>
+            <!-- Formulario de suscripción -->
+            <div class="newsletter">
+                <span class="newsletter1">SUSCRÍBETE</span>
+                <span class="newsletter2">A NUESTRO NEWSLETTER</span>
+            </div>
+            <!-- Campo de email -->
+            <div class="email">
+                <input id="email_newsletter" placeholder="ejemplo@gmail.com" type="text">
+            </div>
+            <!-- Términos y condiciones -->
+            <div class="codiciones_terminos">
+                <label class="aceptar">
+                    <input type="checkbox" class="check_newsletter">
+                    <span class="texto_aceptar">ACETPO LOS TÉRMINOS Y CONDICIONES IMPUESTAS</span>
+                </label>
+            </div>
+            <!-- Botón de suscripción -->
+            <div class="suscripcion">
+                <a href="html/cuenta.html">¡ME SUSCRIBO!</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Pie de página -->
+    <footer class="pie-pagina">
+        <div class="grupo-1">
+            <!-- Logo del pie de página -->
+            <div class="box">
+                <figure>
+                    <a href="#">
+                        <img src="imagenes/logo-game-controller-2-white.png" alt="Logo-footer">
+                    </a>
+                </figure>
+            </div>
+            <!-- Información sobre nosotros -->
+            <div class="box">
+                <h2>SOBRE NOSOTROS</h2>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa?</p>
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odio, ipsa?</p>
+            </div>
+            <!-- Enlaces a redes sociales -->
+            <div class="box">
+                <h2>SÍGUENOS</h2>
+                <div class="red-social">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                </div>
+            </div>
+        </div>
+        <!-- Derechos de autor -->
+        <div class="grupo-2">
+            <small>&copy; 2024 <b>TECHTITANS</b> - Todos los Derechos Reservados.</small>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Plantilla</title>
+	<style type="text/css">
+		/* Asegura que el body ocupe toda la altura de la ventana */
+		body {
+			display: flex;
+			justify-content: center;
+			/* Centra el div horizontalmente */
+			align-items: center;
+			/* Centra el div verticalmente */
+			height: 100vh;
+			/* Usamos la altura total de la ventana */
+			margin: 0;
+			/* Elimina márgenes por defecto */
+			background-color: #f0f0f0;
+			/* Puedes cambiar el color de fondo si quieres */
+		}
+
+		/* Estilos para el div que se va a animar */
+		.prueba1 {
+			color: yellow;
+			background-color: black;
+			width: 15em;
+			padding: 1em;
+			text-align: center;
+			animation: movimiento 5s linear;
+			animation-iteration-count: 5;
+			animation-delay: .5s;
+			/* Llama a la animación */
+		}
+
+		/* Definimos la animación */
+		@keyframes movimiento {
+			15% {
+				transform: translateX(0) rotate(0deg);
+				/* Comienza en el centro, sin rotación */
+			}
+
+			30% {
+				transform: translateX(150px) rotate(15deg);
+				/* Se mueve hacia la derecha y se inclina hacia la derecha */
+			}
+
+			50% {
+				transform: translate(0, 100px) rotate(0deg);
+				/* Baja al centro pero hacia abajo, sin rotación */
+			}
+
+			65% {
+				transform: translateX(-150px) rotate(-15deg);
+				/* Se mueve hacia la izquierda y se inclina hacia la izquierda */
+			}
+
+			90% {
+				transform: translate(0, -100px) rotate(0deg);
+				/* Vuelve al centro pero se mueve hacia arriba */
+			}
+
+			100% {
+				transform: translateX(0px);
+			}
+		}
+	</style>
+
+</head>
+
+<body>
+
+	<div class="prueba1">
+		<p>
+			Hace mucho tiempo, en una galaxia lejana, muy lejana.
+		</p>
+		<p>
+			UNA NUEVA ESPERANZA
+			Nos encontramos en un periodo de
+			guerra civil. Las naves espaciales
+			rebeldes atacando desde una base
+			oculta, han logrado su primera
+			victoria contra el malvado Imperio
+			Galáctico.
+		</p>
+	</div>
+
+</body>
+
+</html>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejemplo de Media Query</title>
+    <style>
+        /* Estilos generales por defecto (pantallas grandes) */
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 18px;
+            background-color: lightblue;
+            margin: 20px;
+        }
+
+        h1 {
+            color: darkblue;
+        }
+
+        p {
+            color: darkgray;
+        }
+
+        /* Media query para pantallas pequeñas (como tabletas y móviles en horizontal) */
+        @media (max-width: 768px) {
+            body {
+                font-size: 16px;
+                background-color: lightgreen;
+                margin: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+                color: darkgreen;
+            }
+
+            p {
+                font-size: 14px;
+            }
+        }
+
+        /* Media query para pantallas muy pequeñas (como móviles en modo retrato) */
+        @media (max-width: 480px) {
+            body {
+                font-size: 14px;
+                background-color: lightcoral;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 20px;
+                color: darkred;
+            }
+
+            p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bienvenidos a mi página web</h1>
+    <p>Este es un ejemplo de cómo usar media queries en CSS para adaptar el diseño de una página a diferentes tamaños de
+        pantalla.</p>
+</body>
+
+</html>

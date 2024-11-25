@@ -1,0 +1,376 @@
+/* Definición de una nueva fuente personalizada */
+@font-face {
+    font-family: MiNuevaFuente1;
+    src: url(../fuentes/minecraft_font.ttf);
+    /* URL de la fuente TTF */
+    src: url(../fuentes/MinecraftTen-VGORe.ttf);
+    /* URL de otra fuente TTF */
+}
+
+/* Estilos generales para el cuerpo del documento */
+body {
+    font-family: sans-serif, Arial, Helvetica;
+    /* Fuentes de respaldo */
+    margin: 0;
+    /* Elimina los márgenes predeterminados */
+    padding: 0;
+    /* Elimina los rellenos predeterminados */
+}
+
+/* Estilos para el encabezado */
+header {
+    display: flex;
+    /* Utiliza el modelo de caja flexible */
+    justify-content: space-between;
+    /* Distribuye los elementos en el espacio disponible */
+    background-color: white;
+    /* Color de fondo verde */
+    align-items: center;
+    /* Alinea los elementos verticalmente al centro */
+    font-weight: bold;
+    /* Texto en negrita */
+}
+
+/* Estilos para los enlaces dentro de la clase 'enlaces' */
+.enlaces a {
+    padding: 1em;
+    /* Añade relleno alrededor del texto */
+    margin: 1em;
+    /* Añade margen entre los enlaces */
+}
+
+/* Estilos para la primera sección */
+.seccion1 {
+    font-family: MiNuevaFuente1;
+    /* Usa la fuente personalizada */
+    height: 1100px;
+    /* Altura de la sección */
+    background-image: linear-gradient(rgba(255, 255, 255, 0.212), rgba(255, 255, 255, 0.189)), url("../imagenes/background1.webp");
+    /* Imagen de fondo con gradiente */
+    background-repeat: no-repeat;
+    /* No repetir la imagen de fondo */
+    background-size: cover;
+    /* Ajusta la imagen de fondo para cubrir todo el contenedor */
+    background-position: center center;
+    /* Posición centrada de la imagen de fondo */
+}
+
+/* Estilos para el título */
+.title {
+    text-align: center;
+    /* Alinea el texto al centro */
+    padding: 0.1em;
+    /* Añade un pequeño relleno */
+    font-size: 55px;
+    /* Tamaño de fuente */
+    color: green;
+    /* Color del texto verde */
+    font-weight: bold;
+    /* Texto en negrita */
+    text-shadow: 4px 4px 4px black;
+    /* Sombra del texto */
+}
+
+/* Estilos para la primera subsección */
+.subseccion1 {
+    display: flex;
+    /* Utiliza el modelo de caja flexible */
+    align-items: center;
+    /* Alinea los elementos verticalmente al centro */
+}
+
+/* Estilos para el subtítulo */
+.subtitle {
+    text-align: center;
+    /* Alinea el texto al centro */
+    font-size: 70px;
+    /* Tamaño de fuente */
+    color: rgb(0, 115, 255);
+    /* Color del texto */
+    text-shadow: 4px 4px 4px black;
+    /* Sombra del texto */
+}
+
+/* Estilos para el video de introducción */
+.videoIntro {
+    float: left;
+    /* Flota el elemento a la izquierda */
+    width: 560px;
+    /* Ancho del video */
+    height: 315px;
+    /* Altura del video */
+    border: 50px solid black;
+    /* Borde sólido negro */
+    border-image-source: url("../imagenes/Minecraft-border-removebg-preview.png");
+    /* Imagen del borde */
+    border-image-slice: 30;
+    /* Define cómo se corta la imagen del borde */
+    border-image-outset: 0px;
+    /* Espaciado adicional alrededor del borde */
+    border-image-width: 50px;
+    /* Ancho del borde */
+    margin-left: 80px;
+    /* Margen izquierdo */
+}
+
+/* Estilos para la segunda sección */
+.seccion2 {
+    height: 600px;
+    /* Altura de la sección */
+    background-color: green;
+    /* Color de fondo verde */
+}
+
+/* Estilos para la segunda subsección */
+.subseccion2 {
+    margin: auto;
+    /* Margen automático */
+    width: 600px;
+    /* Ancho del contenedor */
+    padding: 2em;
+    /* Añade relleno alrededor del contenido */
+}
+
+/* Estilos para el texto "Recibir" */
+.recibir {
+    font-family: 'Times New Roman', Times, serif;
+    /* Utiliza una fuente específica */
+    font-size: 70px;
+    /* Tamaño de fuente */
+}
+
+/* Estilos para el texto "Newsletter" */
+.newsletter {
+    font-family: 'Arial Narrow', Arial, sans-serif;
+    /* Utiliza una fuente específica */
+    font-size: 70px;
+    /* Tamaño de fuente */
+}
+
+/* Estilos para el texto "Newsletter1" */
+.newsletter1 {
+    font-weight: bolder;
+    /* Texto en negrita */
+}
+
+/* Estilos para el campo de entrada de correo electrónico */
+.email input {
+    width: 100%;
+    /* Ancho completo */
+    background: transparent;
+    /* Fondo transparente */
+}
+
+/* Estilos para las condiciones y términos */
+.codiciones_terminos {
+    background: transparent;
+    /* Fondo transparente */
+    padding: 1em;
+    /* Añade relleno alrededor del contenido */
+}
+
+/* Estilos para el botón de suscripción */
+.suscripcion a {
+    background-color: black;
+    /* Color de fondo negro */
+    color: white;
+    /* Color del texto blanco */
+    padding: 10px 20px;
+    /* Añade relleno alrededor del texto */
+    text-decoration: none;
+    /* Elimina la decoración del enlace */
+    border-radius: 5px;
+    /* Borde redondeado */
+}
+
+/* Estilos al pasar el ratón sobre el botón de suscripción */
+.suscripcion a:hover {
+    background-color: #333;
+    /* Cambia el color de fondo al pasar el ratón */
+}
+
+/* Estilos para todos los enlaces */
+a {
+    text-decoration: none;
+    /* Elimina la decoración del enlace */
+    color: black;
+    /* Color del texto */
+}
+
+/* Estilos para el logo */
+.logo img {
+    height: 60px;
+    /* Altura de la imagen */
+    margin-left: 4em;
+    /* Margen izquierdo */
+}
+
+/* Estilos para los enlaces en la navegación */
+nav a {
+    text-align: center;
+    /* Alinea el texto al centro */
+    padding: 4em;
+    /* Añade relleno alrededor del texto */
+}
+
+/* Estilos para la sección de inicio de sesión */
+.Inicio-Sesion {
+    align-items: center;
+    /* Alinea los elementos verticalmente al centro */
+    display: flex;
+    /* Utiliza el modelo de caja flexible */
+    padding: 2em;
+    /* Añade relleno alrededor del contenido */
+    margin-right: 5em;
+    /* Margen derecho */
+}
+
+/* Estilos para la cuenta */
+.cuenta {
+    padding: 0.5em;
+    /* Añade un pequeño relleno */
+    margin-top: -3px;
+    /* Margen superior negativo */
+}
+
+/* Estilos para el pie de página */
+.pie-pagina {
+    width: 100%;
+    /* Ancho completo */
+    background-color: #0a141d;
+    /* Color de fondo */
+}
+
+/* Estilos para el grupo 1 del pie de página */
+.pie-pagina .grupo-1 {
+    width: 100%;
+    /* Ancho completo */
+    max-width: 1200px;
+    /* Ancho máximo */
+    margin: auto;
+    /* Margen automático */
+    display: grid;
+    /* Utiliza el modelo de caja de cuadrícula */
+    grid-template-columns: repeat(3, 1fr);
+    /* Define 3 columnas de tamaño igual */
+    grid-gap: 50px;
+    /* Espaciado entre las columnas */
+    padding: 45px 0px;
+    /* Añade relleno alrededor del contenido */
+}
+
+/* Estilos para los elementos dentro de cada caja del pie de página */
+.pie-pagina .grupo-1 .box figure {
+    width: 100%;
+    /* Ancho completo */
+    height: 100%;
+    /* Altura completa */
+    display: flex;
+    /* Utiliza el modelo de caja flexible */
+    justify-content: center;
+    /* Alinea los elementos horizontalmente al centro */
+    align-items: center;
+    /* Alinea los elementos verticalmente al centro */
+}
+
+/* Estilos para las imágenes dentro de cada caja del pie de página */
+.pie-pagina .grupo-1 .box figure img {
+    width: 100px;
+    /* Ancho de la imagen */
+}
+
+/* Estilos para los títulos dentro de cada caja del pie de página */
+.pie-pagina .grupo-1 .box h2 {
+    color: #fff;
+    /* Color del texto blanco */
+    margin-bottom: 25px;
+    /* Margen inferior */
+    font-size: 20px;
+    /* Tamaño de fuente */
+}
+
+/* Estilos para los párrafos dentro de cada caja del pie de página */
+.pie-pagina .grupo-1 .box p {
+    color: #efefef;
+    /* Color del texto */
+    margin-bottom: 10px;
+    /* Margen inferior */
+}
+
+/* Estilos para los enlaces de redes sociales dentro de cada caja del pie de página */
+.pie-pagina .grupo-1 .red-social a {
+    display: inline-block;
+    /* Muestra como bloque en línea */
+    text-decoration: none;
+    /* Elimina la decoración del enlace */
+    width: 45px;
+    /* Ancho */
+    height: 45px;
+    /* Altura */
+    line-height: 45px;
+    /* Altura de línea */
+    color: #fff;
+    /* Color del texto blanco */
+    margin-right: 10px;
+    /* Margen derecho */
+    background-color: #0d2033;
+    /* Color de fondo */
+    text-align: center;
+    /* Alinea el texto al centro */
+    transition: all 300ms ease;
+    /* Transición suave de todos los estilos */
+}
+
+/* Estilos al pasar el ratón sobre los enlaces de redes sociales */
+.pie-pagina .grupo-1 .red-social a:hover {
+    color: aqua;
+    /* Cambia el color del texto al pasar el ratón */
+}
+
+/* Estilos para el grupo 2 del pie de página */
+.pie-pagina .grupo-2 {
+    background-color: #0a1a2a;
+    /* Color de fondo */
+    padding: 15px 10px;
+    /* Añade relleno alrededor del contenido */
+    text-align: center;
+    /* Alinea el texto al centro */
+    color: #fff;
+    /* Color del texto blanco */
+}
+
+/* Estilos para el texto pequeño dentro del grupo 2 del pie de página */
+.pie-pagina .grupo-2 small {
+    font-size: 15px;
+    /* Tamaño de fuente pequeño */
+}
+
+/* Estilos para la selección */
+.seleccionar {
+    display: flex;
+    /* Utiliza el modelo de caja flexible */
+    justify-content: center;
+    /* Alinea los elementos horizontalmente al centro */
+    margin-top: 60px;
+    /* Margen superior */
+}
+
+/* Estilos para las imágenes dentro de la selección */
+#primera img,
+#segunda img {
+    width: 600px;
+    /* Ancho de la imagen */
+    margin: 20px;
+    /* Margen alrededor de la imagen */
+    transform: rotate(10deg);
+    /* Rotación de la imagen */
+}
+
+/* Estilos al pasar el ratón sobre las imágenes */
+#primera img:hover,
+#segunda img:hover {
+    width: 650px;
+    /* Ancho de la imagen al pasar el ratón */
+    transition-duration: 0.5s;
+    /* Duración de la transición */
+}

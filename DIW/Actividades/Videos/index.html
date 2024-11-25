@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Display Example</title>
+</head>
+
+<body>
+    <h1>Display Videos with &lt;figure&gt;</h1>
+
+    <!-- Video in WebM format -->
+    <figure>
+        <figcaption>Video in WebM format:</figcaption>
+        <video controls width="640">
+            <source src="img/Goku Y Vegeta, Canta El Efecto (Vídeo Oficial).webm" type="video/webm">
+            Your browser does not support the WebM video format.
+        </video>
+    </figure>
+
+    <!-- Video in AVI format (not supported natively) -->
+    <figure>
+        <figcaption>Video in AVI format:</figcaption>
+        <video controls width="640">
+            <source src="img/Goku Y Vegeta, Canta El Efecto (Vídeo Oficial).avi">
+        </video>
+        <p>Your browser does not support the AVI format directly. Please convert the video to a supported format or use
+            a plugin.</p>
+    </figure>
+</body>
+
+</html>

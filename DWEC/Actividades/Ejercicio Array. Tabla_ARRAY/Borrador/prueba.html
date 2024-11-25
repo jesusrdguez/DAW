@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Ejercicio. CREAR TABLAS Y ARRAYS</title>
+    <style>
+      span {
+        color: red;
+      }
+
+      .claseInput {
+        width: 3em;
+        margin: 0 0.5em 0.5em 0;
+      }
+
+      #salMatriz {
+        margin-left: 1em;
+      }
+
+      #tabla_1 {
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+
+      td,
+      tr {
+        border: 1px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <br />
+    <h2>Ejercicio Tablas y Arrays</h2>
+    <h3>
+      Introduce el código javascript necesario para que al pulsar sobre el
+      botón, se cree un array (matriz) de inputs (elementos DOM) con un número
+      fijo de filas y columnas.
+    </h3>
+
+    <br />
+    <form>
+      <p>
+        <label for="nfilas">Introduce el número de filas:</label>
+        <input
+          type="number"
+          id="nfilas"
+          value="4"
+          min="1"
+          max="100"
+          style="width: 3em"
+        />
+        <br />
+        <label for="ncolumnas">Introduce el número de columnas:</label>
+        <input
+          type="number"
+          id="ncolumnas"
+          value="4"
+          min="1"
+          max="100"
+          style="width: 3em"
+        />
+      </p>
+      <p>
+        <button type="button" id="btGenMatriz">Generar Matriz de Inputs</button>
+        <button type="button" id="btLlenarMatriz" disabled>
+          Llenar Matriz de Inputs
+        </button>
+        <button type="button" id="btGenTabla" disabled>Generar tabla</button>
+      </p>
+    </form>
+    <br />
+
+    <div id="salMatriz"></div>
+
+    <h3>Filtro de tabla:</h3>
+    <p>
+      Mostrar solo números >
+      <input
+        type="number"
+        id="nfiltroI"
+        value="0"
+        min="1"
+        max="1000"
+        style="width: 4em"
+      />
+    </p>
+    <p>&</p>
+    <p>
+      Mostrar solo números <
+      <input
+        type="number"
+        id="nfiltroA"
+        value="1000"
+        min="1"
+        max="1000"
+        style="width: 4em"
+      />
+    </p>
+    <p>Pulsa => "Generar tabla"</p>
+    <span id="info_tabla"></span>
+
+    <div id="tabla"></div>
+
+    <script type="text/javascript">
+      // Esta función se ejecuta cuando la ventana ha terminado de cargar.
+      window.onload = () => {
+        // Seleccionamos los elementos del DOM que necesitaremos
+        const genMatrizBtn = document.getElementById("btGenMatriz"); // Botón para generar la matriz de inputs
+        const rellMatrizBtn = document.getElementById("btLlenarMatriz"); // Botón para llenar la matriz con números
+        const genTablaBtn = document.getElementById("btGenTabla"); // Botón para generar la tabla
+        const salidaMatriz = document.getElementById("salMatriz"); // Contenedor para mostrar la matriz de inputs
+        const numeroFilas = document.getElementById("nfilas"); // Input para el número de filas
+        const numeroColumnas = document.getElementById("ncolumnas"); // Input para el número de columnas
+
+        // Asignamos un evento click al botón de generar matriz
+        genMatrizBtn.onclick = () => {
+          rellMatrizBtn.removeAttribute("disabled"); // Habilitamos el botón de rellenar matriz
+          generarMatrizInputs(numeroFilas.value, numeroColumnas.value); // Generamos la matriz de inputs
+        };
+
+        // Asignamos un evento click al botón de llenar matriz
+        rellMatrizBtn.onclick = () => {
+          genTablaBtn.removeAttribute("disabled"); // Habilitamos el botón de generar tabla
+          rellenarMatriz(); // Llenamos la matriz con números aleatorios
+        };
+
+        // Asignamos un evento click al botón de generar tabla
+        genTablaBtn.onclick = () => {
+          crearTabla(numeroFilas.value, numeroColumnas.value); // Creamos la tabla con los valores de los inputs
+        };
+
+        // Función para generar la matriz de inputs
+        const generarMatrizInputs = (nFilas, nColumnas) => {
+          salidaMatriz.innerHTML = ""; // Limpiamos el contenedor anterior
+          for (let i = 0; i < nFilas; i++) {
+            // Iteramos por cada fila
+            for (let j = 0; j < nColumnas; j++) {
+              // Iteramos por cada columna
+              const botonColum = document.createElement("input"); // Creamos un nuevo input
+              botonColum.classList.add("claseInput"); // Asignamos la clase para estilo
+              botonColum.disabled = true; // Deshabilitamos el input inicialmente
+              salidaMatriz.appendChild(botonColum); // Añadimos el input al contenedor
+            }
+            salidaMatriz.appendChild(document.createElement("br")); // Agregamos un salto de línea después de cada fila
+          }
+        };
+
+        // Función para llenar la matriz de inputs con números aleatorios
+        const rellenarMatriz = () => {
+          const inputsMatriz = salidaMatriz.querySelectorAll(".claseInput"); // Seleccionamos todos los inputs de la matriz
+          inputsMatriz.forEach((input) => {
+            input.value = Math.floor(Math.random() * 1000); // Asignamos un número aleatorio a cada input
+          });
+        };
+
+        // Función para crear una tabla a partir de los valores de los inputs
+        const crearTabla = (nFilas, nColumnas) => {
+          const divTabla = document.getElementById("tabla"); // Seleccionamos el contenedor para la tabla
+          const numeroMinimoValores = parseInt(
+            document.getElementById("nfiltroI").value,
+            10
+          ); // Obtenemos el valor mínimo del filtro
+          const numeroMaximoValores = parseInt(
+            document.getElementById("nfiltroA").value,
+            10
+          ); // Obtenemos el valor máximo del filtro
+
+          divTabla.innerHTML = ""; // Limpiamos la tabla anterior
+          const tabla = document.createElement("table"); // Creamos un nuevo elemento de tabla
+          tabla.setAttribute("id", "tabla_1"); // Asignamos un ID a la tabla
+
+          let indiceValoresInputs = 0; // Inicializamos el índice para acceder a los valores de los inputs
+          const valoresInputs = document.querySelectorAll(".claseInput"); // Seleccionamos todos los inputs de la matriz
+
+          for (let i = 0; i < nFilas; i++) {
+            // Iteramos por cada fila
+            const colum = document.createElement("tr"); // Creamos una nueva fila
+            for (let j = 0; j < nColumnas; j++) {
+              // Iteramos por cada columna
+              const fila = document.createElement("td"); // Creamos una nueva celda
+
+              const contenidoFila = document.createTextNode(
+                valoresInputs[indiceValoresInputs].value
+              ); // Obtenemos el valor del input correspondiente
+              // Verificamos si el valor está dentro del rango de filtros
+              if (numeroMinimoValores <= numeroMaximoValores) {
+                if (
+                  valoresInputs[indiceValoresInputs].value >
+                    numeroMinimoValores &&
+                  valoresInputs[indiceValoresInputs].value < numeroMaximoValores
+                ) {
+                  fila.appendChild(contenidoFila); // Agregamos el contenido a la celda si está en el rango
+                }
+              } else {
+                document.getElementById("info_tabla").innerText =
+                  "Introduzca un rango correcto"; // Mensaje de error si el rango es incorrecto
+              }
+
+              fila.onclick = () => saluda(i, j); // Asignamos un evento click a la celda que llama a la función saluda
+              colum.appendChild(fila); // Agregamos la celda a la fila
+              indiceValoresInputs++; // Incrementamos el índice para la próxima asignación
+            }
+            tabla.appendChild(colum); // Agregamos la fila a la tabla
+          }
+
+          divTabla.appendChild(tabla); // Añadimos la tabla al contenedor
+        };
+
+        // Función que se ejecuta al hacer clic en una celda
+        const saluda = (f, c) => {
+          alert(`Se ha pulsado la celda ${f}, ${c}`); // Mostramos un mensaje con la posición de la celda
+        };
+      };
+    </script>
+  </body>
+</html>

@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <script>
+      window.onload = function () {
+        var selButton = document.getElementById("rellenar_select");
+
+        // Agregamos el evento click al botón
+        selButton.onclick = function () {
+          var sel = document.getElementById("select");
+          var numOp = document.getElementById("cantidad").value;
+
+          // Rellenar el select con las opciones
+          rellenarSelect(sel, numOp);
+        };
+      };
+
+      function rellenarSelect(select, mOpciones) {
+        select.length = 1;
+        for (var i = 1; i <= mOpciones; i++) {
+          var opcion = document.createElement("option");
+          var contenido = document.createTextNode("opcion " + i);
+          opcion.appendChild(contenido);
+          opcion.setAttribute("value", i);
+          select.appendChild(opcion);
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <h3>Ejercicio para rellenar un select</h3>
+    <input type="button" id="rellenar_select" value="Llenar select" />
+    <label for="cantidad">Cantidad de selects</label>
+    <input
+      type="number"
+      name="cantidad"
+      id="cantidad"
+      maxlength="25"
+      size="15"
+    />
+
+    <br /><br />
+    <label for="select">Select gen&eacuterico: </label>
+    <select id="select">
+      <option value="-1">Selecciona Opción</option>
+    </select>
+  </body>
+</html>

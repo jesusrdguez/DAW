@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de Formulario</title>
+    <style type="text/css">
+        span {
+            color: red;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            document.getElementById("formulario_1").onsubmit = validarFormulario;
+        };
+
+        function validarFormulario(event) {
+            event.preventDefault(); // Evita el envío del formulario hasta que se validen los datos
+
+            let isValid = true; // Variable para comprobar la validez del formulario
+            const infoFecha = document.getElementById("info_fecha");
+            infoFecha.textContent = ""; // Reinicia el mensaje de error
+
+            // Obtener valores de los campos de fecha
+            const valorDia = document.getElementById("f_dia").value;
+            const valorMes = (document.getElementById("f_mes").value) - 1; // Resta 1 al mes
+            const valorAno = document.getElementById("f_ano").value;
+
+            // Validación de campos vacíos
+            if (!valorDia || !valorMes || !valorAno) {
+                infoFecha.textContent = "Por favor, completa todos los campos de la fecha.";
+                isValid = false;
+            } else {
+                // Validar si los campos son números
+                if (isNaN(valorDia) || isNaN(valorMes + 1) || isNaN(valorAno)) {
+                    infoFecha.textContent = "Los campos de fecha deben ser números.";
+                    isValid = false;
+                } else {
+                    // Validar rango de la fecha
+                    const fecha = new Date(valorAno, valorMes, valorDia);
+                    if (fecha.getFullYear() != valorAno || fecha.getMonth() != valorMes || fecha.getDate() != valorDia) {
+                        infoFecha.textContent = "La fecha ingresada no es válida.";
+                        isValid = false;
+                    }
+                }
+            }
+
+            // Si es válido, se puede enviar el formulario
+            if (isValid) {
+                alert("Formulario enviado correctamente.");
+                // Aquí puedes agregar el código para enviar el formulario si es necesario
+                // e.g., document.getElementById("formulario_1").submit();
+            }
+        }
+    </script>
+</head>
+<body>
+    <form id="formulario_1">
+        <label for="f_dia">Fecha: </label>
+        <input type="text" id="f_dia" maxlength="2" size="1" placeholder="DD" /> /
+        <input type="text" id="f_mes" maxlength="2" size="1" placeholder="MM" /> /
+        <input type="text" id="f_ano" maxlength="4" size="3" placeholder="AAAA" /> (dd/mm/aaaa)
+        <span id="info_fecha"></span>
+        <br /><br /><br />
+        <p>
+            <input type="submit" value="ENVIAR" id="btEnviar" />
+            <br /><br />
+            <input type="reset" value="Limpiar" />
+        </p>
+    </form>
+</body>
+</html>

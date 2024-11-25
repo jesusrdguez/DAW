@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        const obtenerUsuariosP = id_grupo => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    if (id_grupo == 1)
+                        resolve("Manolo, Juan, Pepe, Alfonso");
+                    else
+                        reject("No se han encontrado usuarios...")
+                }, 500)
+            })
+        }
+
+        const obtenerClientesP = clientes => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve(clientes);
+                }, 500);
+            })
+        }
+
+        const obtenerProductosP = () => {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    resolve("Productos listos!!!");
+                }, 500)
+            })
+        }
+
+        // Consumimos las promesas
+
+        obtenerUsuariosP(1)
+            .then(res => {
+                console.log("usuarios res: ", res);
+                return obtenerClientesP(res)
+            })
+            .then(res => {
+                console.log("Los clientes son: ", res);
+                return obtenerProductosP(res)
+            })
+            .then(res => console.log("usuarios res: ", res))
+            .catch(error => console.log("error en la promesa: ", error));
+
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

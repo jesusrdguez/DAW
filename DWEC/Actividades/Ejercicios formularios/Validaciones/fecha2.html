@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de Formulario</title>
+    <style type="text/css">
+      span {
+        color: red;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        document.getElementById("formulario_1").onsubmit = validarFormulario;
+      };
+
+      function validarFormulario(event) {
+        // event.preventDefault(); // Evita el envío del formulario hasta que se validen los datos
+
+        let isValid = true; // Variable para comprobar la validez del formulario
+        const infoFecha = document.getElementById("info_fecha");
+        infoFecha.textContent = ""; // Reinicia el mensaje de error
+
+        // Obtener el valor de la fecha
+        const fechaInput = document.getElementById("fecha").value;
+
+        // Validación de campos vacíos
+        if (!fechaInput) {
+          infoFecha.textContent = "Por favor, introduce una fecha.";
+          isValid = false;
+        } else {
+          // Validar la longitud y el formato de la fecha sin expresiones regulares
+          if (
+            fechaInput.length !== 10 || // Tamaño total de la fecha
+            fechaInput[4] !== "-" ||
+            fechaInput[7] !== "-"
+          ) {
+            infoFecha.textContent =
+              "El formato de la fecha debe ser aaaa-mm-dd.";
+            isValid = false;
+          } else {
+            // Extraer el año, mes y día
+            const ano = Number(fechaInput.substring(0, 4));
+            const mes = Number(fechaInput.substring(5, 7));
+            const dia = Number(fechaInput.substring(8, 10));
+
+            // Validar que los valores sean números
+            if (isNaN(ano) || isNaN(mes) || isNaN(dia)) {
+              infoFecha.textContent = "La fecha ingresada no es válida.";
+              isValid = false;
+            } else {
+              // Validar la fecha
+              const fecha = new Date(ano, mes - 1, dia); // Restar 1 al mes
+              if (
+                fecha.getFullYear() !== ano ||
+                fecha.getMonth() !== mes - 1 ||
+                fecha.getDate() !== dia
+              ) {
+                infoFecha.textContent = "La fecha ingresada no es válida.";
+                isValid = false;
+              }
+            }
+          }
+        }
+
+        // Si es válido, se puede enviar el formulario
+        if (isValid) {
+          alert("Formulario enviado correctamente.");
+          // Aquí puedes agregar el código para enviar el formulario si es necesario
+          // e.g., document.getElementById("formulario_1").submit();
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <form id="formulario_1">
+      <label for="fecha">Fecha (aaaa-mm-dd): </label>
+      <input type="text" id="fecha" placeholder="2024-10-10" />
+      <span id="info_fecha"></span>
+      <br /><br /><br />
+      <p>
+        <input type="submit" value="ENVIAR" id="btEnviar" />
+        <br /><br />
+        <input type="reset" value="Limpiar" />
+      </p>
+    </form>
+  </body>
+</html>

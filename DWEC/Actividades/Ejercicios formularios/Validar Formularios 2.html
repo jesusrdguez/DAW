@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/G513/Downloads/Ejercicio_Validacion_Form_1_SIN.html -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Validar Formularios</title>
+    <style type="text/css">
+      span {
+        color: red;
+      }
+    </style>
+    <script src="./Validar Formularios 2_files/Utilidades.js.download"></script>
+    <script>
+      window.onload = function () {
+        document
+          .getElementById("formulario_1")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+
+            let flag = true;
+
+            var valor = document.getElementById("nombre").value;
+            var miValor = valor.trim();
+            console.log(miValor);
+            if (miValor.length < 2 || miValor == null) {
+              console.log("Nombre inválido");
+              document.getElementById("info_nombre").innerHTML =
+                "Introduzca mínimo 2 caracteres";
+              flag = false;
+            } else {
+              document.getElementById("info_nombre").innerHTML = "";
+            }
+
+            var valorAp = document.getElementById("apellidos").value;
+            var miValorAp = valorAp.trim();
+            if (miValorAp.length < 4 || miValorAp == null) {
+              document.getElementById("info_apellidos").innerHTML =
+                "Introduzca m&iacutenimo 4 caracteres";
+              flag = false;
+            } else {
+              document.getElementById("info_apellidos").innerHTML = "";
+            }
+
+            var valorDNI = document.getElementById("dni").value;
+            var letras = [
+              "T",
+              "R",
+              "W",
+              "A",
+              "G",
+              "M",
+              "Y",
+              "F",
+              "P",
+              "D",
+              "X",
+              "B",
+              "N",
+              "J",
+              "Z",
+              "S",
+              "Q",
+              "V",
+              "H",
+              "L",
+              "C",
+              "K",
+              "E",
+              "T",
+            ];
+            var infoDNI = document.getElementById("info_dni");
+            if (!/^\d{8}[A-Z]$/.test(valorDNI)) {
+              infoDNI.innerHTML = "Introduzca un DNI válido";
+              flag = false;
+            } else if (
+              valorDNI.charAt(8) != letras[valorDNI.substring(0, 8) % 23]
+            ) {
+              infoDNI.innerHTML = "Introduzca un DNI válido";
+              flag = false;
+            } else {
+              infoDNI.innerHTML = "";
+            }
+
+            var indice = document.getElementById("sexo").selectedIndex;
+            if (indice == null || indice == 0) {
+              console.log("Selección invalida");
+              document.getElementById("info_sexo").innerHTML =
+                "Seleccione una opción";
+              flag = false;
+            } else {
+              document.getElementById("info_sexo").innerHTML = "";
+            }
+
+            var valorDia = document.getElementById("f_dia");
+            var valorMes = document.getElementById("f_mes");
+            var valorAnio = document.getElementById("f_ano");
+            var bienFecha = false;
+            if (valorAnio.value > 1900 && valorAnio.value < 2025) {
+              if (
+                valorMes.value == 1 ||
+                valorMes.value == 3 ||
+                valorMes.value == 5 ||
+                valorMes.value == 7 ||
+                valorMes.value == 8 ||
+                valorMes.value == 10 ||
+                valorMes.value == 12
+              ) {
+                if (valorDia.value >= 1 && valorDia.value <= 31) {
+                   console.log("Fecha válida");
+                  bienFecha = true;
+                }
+              } else if (
+                valorMes.value == 2 ||
+                valorMes.value == 4 ||
+                valorMes.value == 6 ||
+                valorMes.value == 9 ||
+                valorMes.value == 11
+              ) {
+                if (valorDia.value >= 1 && valorDia.value <= 30) {
+                  console.log("Fecha válida");
+                  bienFecha = true;
+                }
+              }
+            }
+
+            if (bienFecha) {
+              document.getElementById("info_fecha").innerHTML = "";
+              flag = true;
+            } else {
+              console.log("Fecha inválida");
+              document.getElementById("info_fecha").innerHTML =
+                "Introduzca una fecha v&aacutelida";
+              flag = false;
+            }
+
+            var valorTextarea = document.getElementById("sugerencia").value;
+            if (valorTextarea.length < 1 || valorTextarea == null) {
+              console.log("Textarea inválido");
+              document.getElementById("info_sugerencia").innerHTML =
+                "Haga el favor de introducir alguna sugerencia. Porfi";
+              flag = false;
+            } else {
+              document.getElementById("info_sugerencia").innerHTML = "";
+            }
+
+            return flag;
+          });
+      };
+    </script>
+  </head>
+
+  <body>
+    <h1>Ejercicio Validación de Formularios</h1>
+    <form id="formulario_1">
+      <p></p>
+      <h3>Formulario de Registro:</h3>
+      <label for="nombre">Nombre: </label>
+      <input type="text" name="nombre" id="nombre" maxlength="25" size="15" />
+      <span id="info_nombre"></span>
+      <div>(Mínimo 2 letras)</div>
+      <br /><br />
+
+      <label for="apellidos">Apellidos: </label>
+      <input
+        type="text"
+        name="apellidos"
+        id="apellidos"
+        maxlength="50"
+        size="25"
+      />
+      <span id="info_apellidos"></span>
+      <div>(Mínimo 4 letras)</div>
+      <br /><br />
+
+      <label for="dni">NIF: </label>
+      <input type="text" name="dni" id="dni" maxlength="9" size="9" />
+      <span id="info_dni"></span>
+      <br /><br /><br />
+
+      <label>Sexo: </label>
+      <select id="sexo">
+        <option value="">Selecciona una opción</option>
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+        <option value="Y">Ya quisiera yo</option>
+      </select>
+      <span id="info_sexo"></span>
+      <br /><br /><br />
+
+      <label for="f_dia">Fecha: </label>
+      <input type="text" id="f_dia" maxlength="2" size="1" /> /
+      <input type="text" id="f_mes" maxlength="2" size="1" /> /
+      <input type="text" id="f_ano" maxlength="4" size="3" /> (dd/mm/aaaa)
+      <span id="info_fecha"></span>
+      <br /><br /><br />
+
+      <label for="sugerencia">Alguna sugerencia: </label>
+      <textarea id="sugerencia" name="sugerencia"></textarea>
+      <span id="info_sugerencia"></span>
+      <br /><br />
+      <p></p>
+      <p><b>Todos los campos son obligatorios.</b></p>
+      <br />
+      <p>
+        <input type="submit" value="ENVIAR" />
+        <br /><br />
+        <input type="reset" value="Limpiar" />
+      </p>
+    </form>
+  </body>
+</html>

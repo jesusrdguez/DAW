@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validación de Formulario</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+        }
+        .success {
+            color: green;
+            font-size: 14px;
+        }
+        input, textarea {
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Formulario de Contacto</h1>
+    <form id="formulario" novalidate>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" name="nombre">
+        <span id="error-nombre" class="error"></span>
+
+        <label for="email">Correo electrónico:</label>
+        <input type="email" id="email" name="email">
+        <span id="error-email" class="error"></span>
+
+        <label for="mensaje">Mensaje:</label>
+        <textarea id="mensaje" name="mensaje"></textarea>
+        <span id="error-mensaje" class="error"></span>
+
+        <input type="submit" value="Enviar">
+        <span id="resultado" class="success"></span>
+    </form>
+
+    <script>
+        document.getElementById('formulario').addEventListener('submit', function(event) {
+            event.preventDefault();
+            let valid = true;
+
+            // Validar nombre (mínimo 3 caracteres)
+            const nombre = document.getElementById('nombre').value;
+            if (nombre.length < 3) {
+                document.getElementById('error-nombre').textContent = 'El nombre debe tener al menos 3 caracteres';
+                valid = false;
+            } else {
+                document.getElementById('error-nombre').textContent = '';
+            }
+
+            // Validar email
+            const email = document.getElementById('email').value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById('error-email').textContent = 'Introduzca un correo válido';
+                valid = false;
+            } else {
+                document.getElementById('error-email').textContent = '';
+            }
+
+            // Validar mensaje (mínimo 10 caracteres)
+            const mensaje = document.getElementById('mensaje').value;
+            if (mensaje.length < 10) {
+                document.getElementById('error-mensaje').textContent = 'El mensaje debe tener al menos 10 caracteres';
+                valid = false;
+            } else {
+                document.getElementById('error-mensaje').textContent = '';
+            }
+
+            // Si todo es válido, enviar el formulario (simulado)
+            if (valid) {
+                document.getElementById('resultado').textContent = 'Formulario enviado con éxito';
+            } else {
+                document.getElementById('resultado').textContent = '';
+            }
+        });
+    </script>
+
+</body>
+</html>

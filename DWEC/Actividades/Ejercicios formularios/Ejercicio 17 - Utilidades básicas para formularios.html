@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ejercicio 17 - Utilidades básicas para formularios</title>
+
+    <!-- 17. Mejorar el ejemplo anterior indicando en todo momento al usuario el número
+    de caracteres que aún puede escribir. Además, se debe permitir pulsar las
+    teclas Backspace, Supr. y las flechas horizontales cuando se haya llegado al
+    máximo número de caracteres. -->
+
+    <style>
+      #miTexto,
+      h1 {
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Textarea</h1>
+    <div id="miTexto">
+      <!-- El problema con el contador a la hora de borrar
+       procedía a la hora de capturar el evento. Ya que 
+       'keypress' no siempre captura las teclas como el
+       Backspace o el supr. -->
+      <textarea
+        autofocus
+        id="texto"
+        oninput="return limita(50);"
+        rows="4"
+        cols="50"
+      ></textarea>
+      <div id="contador">Caracteres:</div>
+    </div>
+    <script>
+      function limita(maximoCaracteres) {
+        /**  
+         * Declaro las variables que voy a necesitar
+         * para mejorar el script. Como tomar el div
+         * donde voy a añadir el contador, guardar el
+         * número máximo de caracteres y los números
+         * digitados por el usuario.
+         */
+        var elemento = document.getElementById("texto");
+        var caracteresEscritos = elemento.value.length;
+        var caracteres = parseInt(maximoCaracteres);
+        var miContador = document.getElementById("contador");
+        var resta = caracteres - caracteresEscritos;
+
+        /**
+         * Aquí controlamos que el usuario no escriba más
+         * caracteres de los que son pasados por parámetro.
+         */
+        if (caracteresEscritos > maximoCaracteres) {
+          elemento.value = elemento.value.substring(0, maximoCaracteres); 
+          // Con la resta = 0, no habrá problemas
+          // con los números negativos
+          resta = 0
+        }
+
+        if (elemento.value.length >= maximoCaracteres) {
+          miContador.innerHTML =
+            "Caracteres restantes: " +
+            resta +
+            "/" +
+            caracteres +
+            " <br> Están a full";
+        } else {
+          console.log("Caracteres restantes: " + resta + "/" + caracteres);
+          miContador.innerHTML =
+            "Caracteres restantes: " + resta + "/" + caracteres;
+        }
+      }
+    </script>
+  </body>
+</html>

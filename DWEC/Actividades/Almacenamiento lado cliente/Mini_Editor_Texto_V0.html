@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Plantilla</title>
+
+	<style type="text/css">
+		#texto {
+			width: 700px;
+			height: 500px;
+			border: 1px solid blue;
+			padding: 0.4em;
+		}
+
+		span {
+			border: 2px solid red;
+			margin: 1.1em;
+			padding: .2em;
+			cursor: pointer;
+			background-color: pink;
+		}
+	</style>
+
+	<script type="text/javascript">
+		var texto;
+
+		function ponerNegrita(e) {
+			document.execCommand('bold', false, null);
+			e.preventDefault();
+		}
+
+		function ponerCursiva(e) {
+			document.execCommand('italic', false, null);
+			e.preventDefault();
+		}
+
+		function ponerSubrayado(e) {
+			document.execCommand('underline', false, null);
+			e.preventDefault();
+		}
+
+		function ponerColor(e) {
+			document.execCommand('foreColor', false, "#ff0000");
+			e.preventDefault();
+		}
+
+		function guardarTexto(e) {
+			// textContent => utilizado para coger el texto de un objeto
+			let etiqueta = document.getElementById("clave").value;
+			console.log(etiqueta)
+			let dato = document.getElementById("texto").innerHTML;
+			if (dato.trim().length == 0 || etiqueta.trim().length == 0)
+				alert("Introduzca los datos correspondientes");
+			else {
+				localStorage.setItem(etiqueta, dato);
+				guardarTextoLocalStorage();
+			}
+		}
+
+		function guardarTextoLocalStorage() {
+			let select = document.getElementById("mostrarTexto");
+			select.innerHTML = "";
+			for (let i = 0; i < localStorage.length; i++) {
+				let key = localStorage.key(i);
+				let value = localStorage.getItem(key);
+				let option = document.createElement("option");
+				let contenido = document.createTextNode(`${key}: ${value}`);
+				option.appendChild(contenido);
+				select.appendChild(option);
+			}
+		}
+
+		window.onload = () => {
+			guardarTextoLocalStorage();
+			let texto = document.getElementById("texto");
+			document.getElementById("negrita").addEventListener("mousedown", ponerNegrita)
+			document.getElementById("cursiva").addEventListener("mousedown", ponerCursiva)
+			document.getElementById("subrayado").addEventListener("mousedown", ponerSubrayado)
+			document.getElementById("color").addEventListener("mousedown", ponerColor)
+
+			document.getElementById("guardar").addEventListener("mousedown", guardarTexto);
+		}
+	</script>
+</head>
+
+<body>
+
+	<h3>Procesador de Textos</h3>
+	<label for="clave">
+		Nombre texto:
+		<input type="text" id="clave">
+	</label>
+	<br><br>
+	<div class="scroll">
+		<select size="5" multiple="multiple" id="mostrarTexto">
+		</select>
+	</div>
+	<p>
+		<span id="guardar">Guardar</span>
+		<span id="negrita">Negrita</span>
+		<span id="cursiva">Cursiva</span>
+		<span id="subrayado">Subrayado</span>
+		<span id="color">Color</span>
+	</p>
+	<div id="texto" contentEditable="true" spellcheck="true">
+		Esto es un texto de prueba para no tener que estar escribiendo.
+	</div>
+	<p id="sal"></p>
+
+</body>
+
+</html>

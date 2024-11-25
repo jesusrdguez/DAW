@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style type="text/css">
+      span {
+        color: red;
+      }
+    </style>
+    <script>
+      window.onload = function() {
+          document.getElementById("formulario_1").onsubmit = validarNombre;
+      }
+
+      focoFlag = true;
+
+      function validarNombre() {
+        console.log("hola")
+          var nombre = document.getElementById("nombre");
+          var spanNombre = document.getElementById("info_nombre");
+          if (nombre.value.trim().length < 2 || nombre.value == null) {
+              spanNombre.innerHTML = "Inserte un nombre válido";
+              if (focoFlag) {
+                  nombre.focus();
+                  focoFlag = false;
+              }
+          } else {
+            spanNombre.innerHTML = "";
+            focoFlag = true;
+          }
+          return focoFlag;
+      }
+    </script>
+  </head>
+  <body>
+    <form id="formulario_1">
+      <label for="nombre">Nombre: </label>
+      <input type="text" name="nombre" id="nombre" maxlength="25" size="15" />
+      <span id="info_nombre"></span>
+      <div>(Mínimo 2 letras)</div>
+      <br /><br />
+      <p>
+        <input type="submit" value="ENVIAR" id="btEnviar" />
+        <br /><br />
+        <input type="reset" value="Limpiar" />
+      </p>
+    </form>
+  </body>
+</html>

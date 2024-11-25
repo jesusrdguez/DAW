@@ -1,0 +1,159 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0088)https://uniwebsidad.com/static/libros/ejercicios/javascript/ejercicio16/ejercicio16.html -->
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+  <title>Ejercicio 16 - Informaci�n sobre eventos</title>
+  <style type="text/css">
+    body {
+      font-family: arial, helvetica;
+    }
+
+    #info {
+      width: 160px;
+      border: thin solid silver;
+      padding: 0.5em;
+      position: fixed;
+    }
+
+    #info h1 {
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript">
+    function informacion(elEvento) {
+      var evento = elEvento || window.event;
+      // document.onclick = muestraInformacion;
+      var tamanios = tamanoVentanaNavegador();
+
+      var coordenadaHorizontal = tamanios[0];
+      var coordenadaVertical = tamanios[1];
+
+      var miClickHorizontal = event.clientX;
+      var miClickVertical = event.clientY;
+
+      var posicionHorizontal = "";
+      var posicionVertical = "";
+
+      if (miClickHorizontal > coordenadaHorizontal / 2) {
+        posicionHorizontal = "derecha";
+      } else {
+        posicionHorizontal = "izquierda";
+      }
+
+      if (miClickVertical > coordenadaVertical / 2) {
+        posicionVertical = "abajo Francia";
+      } else {
+        posicionVertical = "arriba España";
+      }
+
+      /**
+       * Son los parámetros que se le pasa a la variable mensaje
+       * de la funcion 'muestraInformacion'. Por lo que mensaje
+       * contendrá un array de Strings que con los siguientes
+       * datos
+       */
+      muestraInformacion(["Posicion", posicionHorizontal, posicionVertical]);
+
+      muestraInformacion();
+    }
+
+    function muestraInformacion(mensaje) {
+      // var tamanios = tamanoVentanaNavegador();
+
+      // var coordenadaHorizontal = tamanios[0];
+      // var coordenadaVertical = tamanios[1];
+      // var mitadIzq, mitadDer, mitadAbj, mitadArr;
+      // console.log(coordenadaHorizontal, coordenadaVertical);
+
+      // var miClickHorizontal = event.clientX;
+      // var miClickVertical = event.clientY;
+      // console.log(miClickHorizontal);
+      // console.log(miClickVertical);
+
+      // if (coordenadaVertical/2 < miClickVertical) {
+      // 	mitadAbj = true;
+      // 	mitadArr = false;
+      // 	console.log("Has pulsado en la mitad inferior de la página", mitadAbj);
+      // } else if (coordenadaVertical/2 > miClickVertical) {
+      // 	mitadArr = true;
+      // 	mitadAbj = false;
+      // 	console.log("Has pulsado en la mitad superior de la página", mitadArr);
+      // }
+
+      // if (coordenadaHorizontal/2 < miClickHorizontal) {
+      // 	mitadDer = true;
+      // 	mitadIzq = false;
+      // 	console.log("Has pulsado la mitad derecha de la página", mitadDer);
+      // } else if (coordenadaHorizontal/2 > miClickHorizontal) {
+      // 	mitadIzq = true;
+      // 	mitadDer = false;
+      // 	console.log("Has pulsado la mitad izquierda de la página", mitadIzq);
+      // }
+
+      // if (mitadArr && mitadIzq) {
+      // 	mensaje[0] = "Izquierda arriba España";
+      // }
+      // if (mitadArr && mitadDer) {
+      // 	mensaje[0] = "Derecha arriba España"
+      // }
+      // if (mitadAbj && mitadIzq) {
+      // 	mensaje[0] = "Izquierda abajo Francia";
+      // }
+      // if(mitadAbj && mitadDer) {
+      // 	mensaje[0] = "Derecha abajo Francia";
+      // }
+
+      document.getElementById("info").innerHTML =
+        "<h1>" + mensaje[0] + "</h1>";
+      for (var i = 1; i < mensaje.length; i++) {
+        document.getElementById("info").innerHTML +=
+          "<p>" + mensaje[i] + "</p>";
+      }
+
+      console.log(mensaje[0]);
+    }
+
+    function tamanoVentanaNavegador() {
+      // Adaptada de http://www.howtocreate.co.uk/tutorials/javascript/browserwindow
+      var dimensiones = [];
+
+      if (typeof window.innerWidth == "number") {
+        // No es IE
+        dimensiones = [window.innerWidth, window.innerHeight];
+      } else if (
+        document.documentElement &&
+        (document.documentElement.clientWidth ||
+          document.documentElement.clientHeight)
+      ) {
+        //IE 6 en modo estandar (no quirks)
+        dimensiones = [
+          document.documentElement.clientWidth,
+          document.documentElement.clientHeight,
+        ];
+      } else if (
+        document.body &&
+        (document.body.clientWidth || document.body.clientHeight)
+      ) {
+        //IE en modo quirks
+        dimensiones = [document.body.clientWidth, document.body.clientHeight];
+      }
+
+      return dimensiones;
+    }
+
+    document.onclick = informacion;
+  </script>
+</head>
+
+<body>
+  <div id="info"></div>
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+  <br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
+</body>
+
+</html>

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Validación de Formulario</title>
+    <style type="text/css">
+      span {
+        color: red;
+      }
+    </style>
+    <script>
+      window.onload = function () {
+        document.getElementById("formulario_1").onsubmit = validarFormulario;
+      };
+
+      function validarFormulario(event) {
+        event.preventDefault(); // Evita el envío del formulario hasta que se validen los datos
+
+        let isValid = true; // Variable para comprobar la validez del formulario
+        const infoFecha = document.getElementById("info_fecha");
+        infoFecha.textContent = ""; // Reinicia el mensaje de error
+
+        // Obtener el valor de la fecha
+        const fechaInput = document.getElementById("fecha").value;
+
+        // Validación de campos vacíos
+        if (!fechaInput) {
+          infoFecha.textContent = "Por favor, introduce una fecha.";
+          isValid = false;
+        } else {
+          const fechaNormalizada = normalizarFecha(fechaInput);
+
+          if (!fechaNormalizada) {
+            infoFecha.textContent = "Formato de fecha no reconocido.";
+            isValid = false;
+          } else {
+            const { ano, mes, dia } = fechaNormalizada;
+
+            // Validar la fecha
+            const fecha = new Date(ano, mes - 1, dia); // Restar 1 al mes
+            if (
+              fecha.getFullYear() !== ano ||
+              fecha.getMonth() !== mes - 1 ||
+              fecha.getDate() !== dia
+            ) {
+              infoFecha.textContent = "La fecha ingresada no es válida.";
+              isValid = false;
+            }
+          }
+        }
+
+        // Si es válido, se puede enviar el formulario
+        if (isValid) {
+          alert("Formulario enviado correctamente.");
+          // Aquí puedes agregar el código para enviar el formulario si es necesario
+          // e.g., document.getElementById("formulario_1").submit();
+        }
+      }
+
+      function normalizarFecha(fecha) {
+        // Eliminar espacios en blanco
+        fecha = fecha.trim();
+
+        let partes;
+        if (fecha.includes("/")) {
+          // Formatos que usan /
+          partes = fecha.split("/"); // Dividir por '/'
+          if (partes.length === 3) {
+            // Verificar si está en formato mm/dd/aaaa o dd/mm/aaaa
+            if (partes[0].length === 2 || partes[0].length === 1) {
+              // mm/dd/aaaa o m/d/aaaa
+              return {
+                ano: Number(partes[2]),
+                mes: Number(
+                  partes[0].length === 2
+                    ? partes[0]
+                    : partes[0].padStart(2, "0")
+                ),
+                dia: Number(
+                  partes[1].length === 2
+                    ? partes[1]
+                    : partes[1].padStart(2, "0")
+                ),
+              };
+            } else if (partes[1].length === 2 || partes[1].length === 1) {
+              // dd/mm/aaaa o d/m/aaaa
+              return {
+                ano: Number(partes[2]),
+                mes: Number(
+                  partes[1].length === 2
+                    ? partes[1]
+                    : partes[1].padStart(2, "0")
+                ),
+                dia: Number(
+                  partes[0].length === 2
+                    ? partes[0]
+                    : partes[0].padStart(2, "0")
+                ),
+              };
+            }
+          }
+        } else if (fecha.includes("-")) {
+          // Formatos que usan -
+          partes = fecha.split("-"); // Dividir por '-'
+          if (partes.length === 3) {
+            // Verificar si está en formato mm-dd-aaaa o dd-mm-aaaa
+            if (partes[0].length === 2 || partes[0].length === 1) {
+              // mm-dd-aaaa o m-d-aaaa
+              return {
+                ano: Number(partes[2]),
+                mes: Number(
+                  partes[0].length === 2
+                    ? partes[0]
+                    : partes[0].padStart(2, "0")
+                ),
+                dia: Number(
+                  partes[1].length === 2
+                    ? partes[1]
+                    : partes[1].padStart(2, "0")
+                ),
+              };
+            } else if (partes[1].length === 2 || partes[1].length === 1) {
+              // dd-mm-aaaa o d-m-aaaa
+              return {
+                ano: Number(partes[2]),
+                mes: Number(
+                  partes[1].length === 2
+                    ? partes[1]
+                    : partes[1].padStart(2, "0")
+                ),
+                dia: Number(
+                  partes[0].length === 2
+                    ? partes[0]
+                    : partes[0].padStart(2, "0")
+                ),
+              };
+            }
+          }
+        } else if (fecha.length === 10) {
+          // Verificar si está en formato aaaa-mm-dd
+          const ano = Number(fecha.substring(0, 4));
+          const mes = Number(fecha.substring(5, 7));
+          const dia = Number(fecha.substring(8, 10));
+          return { ano, mes, dia };
+        }
+
+        return null; // Si no coincide con ningún formato
+      }
+    </script>
+  </head>
+  <body>
+    <form id="formulario_1">
+      <label for="fecha">Fecha: </label>
+      <input type="text" id="fecha" placeholder="2024-10-10" />
+      <span id="info_fecha"></span>
+      <br /><br /><br />
+      <p>
+        <input type="submit" value="ENVIAR" id="btEnviar" />
+        <br /><br />
+        <input type="reset" value="Limpiar" />
+      </p>
+    </form>
+  </body>
+</html>

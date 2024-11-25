@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<!-- saved from url=(0068)file:///C:/Users/G513/Downloads/Ejercicio_Validacion_Form_0_SIN.html -->
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <title>Validar Formularios</title>
+    <style type="text/css">
+      span {
+        color: red;
+      }
+    </style>
+    <script src="./Validar Formularios_files/Utilidades.js.download"></script>
+    <script>
+      window.onload = function () {
+        document
+          .getElementById("formulario_1")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            let flag = true;
+
+            var valor = document.getElementById("nombre").value;
+            var miValor = valor.trim();
+            console.log(miValor);
+            if (miValor.length < 2 || miValor == null) {
+              console.log("Nombre inválido");
+              document.getElementById("info_nombre").innerHTML =
+                "Introduzca mínimo 2 caracteres";
+              flag = false;
+            } else {
+              document.getElementById("info_nombre").innerHTML = "";
+            }
+
+            var valorDNI = document.getElementById("dni").value;
+            var letras = [
+              "T",
+              "R",
+              "W",
+              "A",
+              "G",
+              "M",
+              "Y",
+              "F",
+              "P",
+              "D",
+              "X",
+              "B",
+              "N",
+              "J",
+              "Z",
+              "S",
+              "Q",
+              "V",
+              "H",
+              "L",
+              "C",
+              "K",
+              "E",
+              "T",
+            ];
+            var infoDNI = document.getElementById("info_dni");
+            if (!/^\d{8}[A-Z]$/.test(valorDNI)) {
+              infoDNI.innerHTML =
+                "Introduzca un DNI válido";
+              flag = false;
+            } else if (
+              valorDNI.charAt(8) != letras[valorDNI.substring(0, 8) % 23]
+            ) {
+              infoDNI.innerHTML =
+                "Introduzca un DNI válido";
+              flag = false;
+            } else {
+              infoDNI.innerHTML = "";
+            }
+
+            var indice = document.getElementById("sexo").selectedIndex;
+            if (indice == null || indice == 0) {
+              console.log("Selección invalida");
+              document.getElementById("info_sexo").innerHTML =
+                "Seleccione una opción";
+              flag = false;
+            } else {
+              document.getElementById("info_sexo").innerHTML = "";
+            }
+
+            var valorTextarea = document.getElementById("sugerencia");
+
+            if (valorTextarea.length < 1 || valorTextarea.value == null) {
+              console.log("Textarea inválido");
+              document.getElementById("info_sugerencia").innerHTML =
+                "Haga el favor de introducir alguna sugerencia. Porfi";
+              flag = false;
+            } else {
+              document.getElementById("info_sugerencia").innerHTML = "";
+            }
+
+            return flag;
+          });
+      };
+    </script>
+  </head>
+
+  <body>
+    <h1>Ejercicio Validación de Formularios</h1>
+    <form id="formulario_1">
+      <p></p>
+      <h3>Formulario de Registro:</h3>
+      <label for="nombre">Nombre: </label>
+      <input type="text" name="nombre" id="nombre" maxlength="25" size="15" />
+      <span id="info_nombre"></span>
+      <div>(Mínimo 2 letras)</div>
+      <br /><br />
+
+      <label for="dni">NIF: </label>
+      <input type="text" name="dni" id="dni" maxlength="9" size="9" />
+      <span id="info_dni"></span>
+      <br /><br /><br />
+
+      <label>Sexo: </label>
+      <select id="sexo">
+        <option value="">Selecciona una opción</option>
+        <option value="F">Femenino</option>
+        <option value="M">Masculino</option>
+        <option value="Y">Ya quisiera yo</option>
+      </select>
+      <span id="info_sexo"></span>
+
+      <br /><br /><br />
+      <label for="sugerencia">Alguna sugerencia: </label>
+      <textarea id="sugerencia" name="sugerencia"></textarea>
+      <span id="info_sugerencia"></span>
+      <br /><br />
+      <p></p>
+      <p><b>Todos los campos son obligatorios.</b></p>
+      <br />
+      <p>
+        <input type="submit" value="ENVIAR" />
+        <br /><br />
+        <input type="reset" value="Limpiar" />
+      </p>
+    </form>
+  </body>
+</html>
