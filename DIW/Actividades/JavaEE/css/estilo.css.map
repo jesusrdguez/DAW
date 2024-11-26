@@ -1,10 +1,1 @@
-{
-  "version": 3,
-  "sourceRoot": "",
-  "sources": [
-    "../scss/estilo.scss"
-  ],
-  "names": [],
-  "mappings": "AAEA;EACI,OAHY",
-  "file": "estilo.css"
-}
+{"version":3,"sourceRoot":"","sources":["../scss/estilo.scss"],"names":[],"mappings":"AAGE;EACE,OAJY;;AAMZ;EACE","file":"estilo.css"}

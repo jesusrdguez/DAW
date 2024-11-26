@@ -18,35 +18,38 @@ body {
 
 /* Estilos para el encabezado */
 header {
+  position: sticky;
+  background-color: #4b4b4b;
   display: flex; /* Utiliza el modelo de caja flexible */
   justify-content: space-between; /* Distribuye los elementos en el espacio disponible */
   align-items: center; /* Alinea los elementos verticalmente al centro */
   font-weight: bold; /* Texto en negrita */
   height: 5em;
 
-  a.logo {
-    img {
-      width: 75px;
-      height: 75px;
-    }
-  }
-
   /* Estilos para los enlaces dentro de la clase 'enlaces' */
   a {
     padding: 1em; /* Añade relleno alrededor del texto */
     margin: 1em; /* Añade margen entre los enlaces */
+    text-decoration: none;
+    color: #bfbcbb;
+
+    img {
+      width: 2.5em;
+      height: 2.5em;
+      box-sizing: border-box;
+    }
   }
 }
 
 /* Estilos para la primera sección */
-.seccion1 {
+#seccion1 {
   font-family: MiNuevaFuente1; /* Usa la fuente personalizada */
   height: 1100px; /* Altura de la sección */
   background-image: linear-gradient(
       rgba(255, 255, 255, 0.212),
       rgba(255, 255, 255, 0.189)
     ),
-    url("../imagenes/background1.webp"); /* Imagen de fondo con gradiente */
+    url("../assets/spaceship-planets-stars-rocket-simple-background-black-backg.jpg"); /* Imagen de fondo con gradiente */
   background-repeat: no-repeat; /* No repetir la imagen de fondo */
   background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el contenedor */
   background-position: center center; /* Posición centrada de la imagen de fondo */
@@ -57,7 +60,7 @@ header {
   text-align: center; /* Alinea el texto al centro */
   padding: 0.1em; /* Añade un pequeño relleno */
   font-size: 55px; /* Tamaño de fuente */
-  color: green; /* Color del texto verde */
+  color: #191919 ; /* Color del texto verde */
   font-weight: bold; /* Texto en negrita */
   text-shadow: 4px 4px 4px black; /* Sombra del texto */
 }
@@ -72,27 +75,24 @@ header {
 .subtitle {
   text-align: center; /* Alinea el texto al centro */
   font-size: 70px; /* Tamaño de fuente */
-  color: rgb(0, 115, 255); /* Color del texto */
+  color: #e62471 ; /* Color del texto */
   text-shadow: 4px 4px 4px black; /* Sombra del texto */
 }
 
 /* Estilos para el video de introducción */
 .videoIntro {
-  float: left; /* Flota el elemento a la izquierda */
   width: 560px; /* Ancho del video */
   height: 315px; /* Altura del video */
-  border: 50px solid black; /* Borde sólido negro */
-  border-image-source: url("../imagenes/Minecraft-border-removebg-preview.png"); /* Imagen del borde */
-  border-image-slice: 30; /* Define cómo se corta la imagen del borde */
-  border-image-outset: 0px; /* Espaciado adicional alrededor del borde */
-  border-image-width: 50px; /* Ancho del borde */
+  border: 55px solid black; /* Borde sólido negro */
+  border-radius: 20px;
   margin-left: 80px; /* Margen izquierdo */
 }
 
 /* Estilos para la segunda sección */
-.seccion2 {
+#seccion2 {
   height: 600px; /* Altura de la sección */
-  background-color: green; /* Color de fondo verde */
+  background-color: #191919  ; /* Color de fondo verde */
+  color: #bfbcbb;
 }
 
 /* Estilos para la segunda subsección */

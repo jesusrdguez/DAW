@@ -1,5 +1,11 @@
 $primary-color: black;
 
 h1 {
+  a {
     color: $primary-color;
+
+    &:hover {
+      color: red;
+    }
+  }
 }
