@@ -32,14 +32,13 @@ header a {
 header a img {
   width: 2.5em;
   height: 2.5em;
-  box-sizing: border-box;
 }
 
 /* Estilos para la primera sección */
 #seccion1 {
   font-family: MiNuevaFuente1; /* Usa la fuente personalizada */
-  height: 1100px; /* Altura de la sección */
-  background-image: linear-gradient(rgba(255, 255, 255, 0.212), rgba(255, 255, 255, 0.189)), url("../assets/spaceship-planets-stars-rocket-simple-background-black-backg.jpg"); /* Imagen de fondo con gradiente */
+  height: 900px; /* Altura de la sección */
+  background-image: linear-gradient(rgba(255, 255, 255, 0.212), rgba(255, 255, 255, 0.189)), url("../assets/img/spaceship-planets-stars-rocket-simple-background-black-backg.jpg"); /* Imagen de fondo con gradiente */
   background-repeat: no-repeat; /* No repetir la imagen de fondo */
   background-size: cover; /* Ajusta la imagen de fondo para cubrir todo el contenedor */
   background-position: center center; /* Posición centrada de la imagen de fondo */
