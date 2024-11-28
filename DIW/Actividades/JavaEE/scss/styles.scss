@@ -36,7 +36,6 @@ header {
     img {
       width: 2.5em;
       height: 2.5em;
-      
     }
   }
 }
@@ -60,7 +59,7 @@ header {
   text-align: center; /* Alinea el texto al centro */
   padding: 0.1em; /* Añade un pequeño relleno */
   font-size: 55px; /* Tamaño de fuente */
-  color: #191919 ; /* Color del texto verde */
+  color: #191919; /* Color del texto verde */
   font-weight: bold; /* Texto en negrita */
   text-shadow: 4px 4px 4px black; /* Sombra del texto */
 }
@@ -69,18 +68,20 @@ header {
 .subseccion1 {
   display: flex; /* Utiliza el modelo de caja flexible */
   align-items: center; /* Alinea los elementos verticalmente al centro */
-}
 
-/* Estilos para el subtítulo */
-.subtitle {
-  text-align: center; /* Alinea el texto al centro */
-  font-size: 70px; /* Tamaño de fuente */
-  color: #e62471 ; /* Color del texto */
-  text-shadow: 4px 4px 4px black; /* Sombra del texto */
+  /* Estilos para el subtítulo */
+  .subtitle {
+    float: left;
+    text-align: center; /* Alinea el texto al centro */
+    font-size: 50px; /* Tamaño de fuente */
+    color: #e62471; /* Color del texto */
+    text-shadow: 4px 4px 4px black; /* Sombra del texto */
+  }
 }
 
 /* Estilos para el video de introducción */
 .videoIntro {
+  float: right;
   width: 560px; /* Ancho del video */
   height: 315px; /* Altura del video */
   border: 55px solid black; /* Borde sólido negro */
@@ -91,7 +92,7 @@ header {
 /* Estilos para la segunda sección */
 #seccion2 {
   height: 600px; /* Altura de la sección */
-  background-color: #191919  ; /* Color de fondo verde */
+  background-color: #191919; /* Color de fondo verde */
   color: #bfbcbb;
 }
 

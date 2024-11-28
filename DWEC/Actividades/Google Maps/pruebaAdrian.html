@@ -1,74 +1,113 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <style type="text/css">
-      /* TENEMOS QUE DARLE UN TAMAÑO AL DIV QUE CONTIENE EL MAPA. SI NO, NO SE VERÁ  */
-      #divmapa {
-        width: 700px;
-        height: 700px;
-        border: 1px solid blue;
+
+<head>
+  <title>Ejemplo de Calcular una ruta con Google Maps</title>
+  <style type="text/css">
+    /* TENEMOS QUE DARLE UN TAMAÑO AL DIV QUE CONTIENE EL MAPA. SI NO, NO SE VERÁ  */
+    #divmapa {
+      width: 1800px;
+      height: 700px;
+      border: 1px solid blue;
+    }
+
+    #indicaciones {
+      position: relative;
+      width: 800px;
+      height: 300px;
+      overflow-y: scroll;
+      border: 1px solid red;
+      margin-top: 10px;
+      padding: 10px;
+    }
+  </style>
+  <script type="text/javascript"
+    src="https://maps.googleapis.com/maps/api/js?sensor=false">
+    </script>
+  <script type="text/javascript">
+    let mapa; // Variable global para el mapa
+    let directionsService; // Servicio para calcular rutas
+    let directionsRenderer; // Renderizador para mostrar la ruta
+
+    function cargarMapa() {
+      // Configuración inicial del mapa
+      const centro = new google.maps.LatLng(37.386765, -5.981461);
+      const opciones = {
+        center: centro, // Posición inicial
+        zoom: 12
+      };
+
+      // Crear el mapa
+      mapa = new google.maps.Map(document.getElementById("divmapa"), opciones);
+
+      // Inicializar DirectionsService y DirectionsRenderer
+      directionsService = new google.maps.DirectionsService();
+      directionsRenderer = new google.maps.DirectionsRenderer();
+
+      // Vincular el DirectionsRenderer al mapa
+      directionsRenderer.setMap(mapa);
+
+      // Configurar el panel para mostrar las indicaciones
+      directionsRenderer.setPanel(document.getElementById("indicaciones"));
+
+      // Asociar el botón "Calcular Ruta" con la función
+      document.getElementById("calcularRuta").onclick = calcularRuta;
+    }
+
+
+    function calcularRuta() {
+      // Obtener los valores de origen y destino
+      const origen = document.getElementById("origen").value;
+      const destino = document.getElementById("destino").value;
+
+      if (!origen || !destino) {
+        alert("Por favor, ingresa tanto el origen como el destino.");
+        return;
       }
-    </style>
-   
-    <title>API v3 de Google Maps. Ejemplo con Geolocalización</title>
-   
-    <script type="text/javascript"
-      src="https://maps.googleapis.com/maps/api/js?key=">
-    </script>
-   
-    <script type="text/javascript">
-        var directionsDisplay = new google.maps.DirectionsRenderer();
-        var directionsService = new google.maps.DirectionsService();
-        var map;
 
-        window.onload = function() {
-          document.getElementById("btCalcular").addEventListener("click", CalcularRuta);
-          CargarMapa();
-        };
-       
-        function CargarMapa () {
-          var micasa = new google.maps.LatLng(37.38264, -5.98249);
-            var opcionesMapa = {
-                zoom: 9,
-                center: micasa,
-            };
-            map = new google.maps.Map(document.getElementById("divmapa"), opcionesMapa);
-            directionsDisplay.setMap(map);
+      // Configuración de la solicitud de la ruta
+      const solicitud = {
+        origin: origen,
+        destination: destino,
+        travelMode: google.maps.TravelMode.DRIVING, // Modos: DRIVING, WALKING, BICYCLING, TRANSIT
+      };
+
+      // Calcular la ruta
+      directionsService.route(solicitud, function (resultado, estado) {
+        if (estado === google.maps.DirectionsStatus.OK) {
+          // Mostrar la ruta en el mapa y las indicaciones
+          directionsRenderer.setDirections(resultado);
+        } else {
+          alert("No se pudo calcular la ruta: " + estado);
         }
+      });
+    }
 
-        function CalcularRuta() {
-          var origen = document.getElementById("origen").value;
-          var destino = document.getElementById("destino").value;
-          var request = {
-            origin: origen,
-            destination: destino,
-            travelMode: google.maps.TravelMode.DRIVING
-          };
-          directionsService.route(request, function(response, status) {
-            if (status == google.maps.DirectionsStatus.OK) {
-              directionsDisplay.setDirections(response);
-            }
-          });
-        }
+    window.onload = cargarMapa;
+  </script>
+</head>
 
-     
-   
-    </script>
-  </head>
- 
-  <body>
-    <label>Origen:</label>
-    <input type="text" id="origen" value="Sevilla" />
-    <label>Destino:</label>
-    <input type="text" id="destino" value="Cádiz" />
-    <br>
-    <button id="btCalcular"">Calcular Ruta</button>
-    <button id=""></button>
-    <p>
-      <div id="divmapa">
-        Aquí pondremos el mapa
-      </div>
-    </p>
-  </body>
+<body>
+  <h3>Ejemplo para crear una ruta con Google Maps</h3>
+  <label for="origen">Origen:</label>
+  <input type="text" id="origen" name="origen" placeholder="Introduce el origen" />
+
+  <br />
+
+  <label for="destino">Destino:</label>
+  <input type="text" id="destino" name="destino" placeholder="Introduce el destino" />
+
+  <br />
+
+  <button id="calcularRuta">Calcular Ruta</button>
+
+  <div id="indicaciones">
+    <strong>Indicaciones aparecerán aquí:</strong>
+  </div>
+
+  <div id="divmapa">
+    Aquí pondremos el mapa
+  </div>
+</body>
+
 </html>

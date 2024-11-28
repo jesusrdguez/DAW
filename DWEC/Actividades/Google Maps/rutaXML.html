@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leer Fichero XML</title>
+    <script type="text/javascript">
+        // fragmento del fichero que vamos a leer:
+        /*
+        <trkpt lat="36.996018" lon="-5.203535">
+            <ele>792.0</ele>
+            <time>2015-01-04T10:26:07Z</time>
+        </trkpt>
+        */
+
+
+        function Leer_Fichero(evento) {
+            var e = evento || window.event;
+            var fichero = e.target.files[0];
+            
+            // Lector del archivo subido por el usuario
+            var reader = new FileReader();
+
+            // Cuando se haya terminado de leer todo el archivo;
+            // se activará la función para convertir lo
+            // a XML, y tratarlo posteriormente
+            reader.onload = function (e) {
+                // Le debemos pasar el resultado del reader a 
+                // la función Convertir_a_XML() ya que al principio
+                // se encuentra con texto plano, por lo que 
+                // nuestro JavaScrip no lo entendería
+                console.log("XML principal: ", reader.result);
+                let miXml = Convertir_a_XML(reader.result);
+                console.log("miXml: ", miXml);
+                // Función para tratar el XML
+                tratarXML(miXml);
+            }
+
+            // Función para convertir el archivo de texto a XML
+            function Convertir_a_XML(texto) {
+                var xml = null;
+                if (window.ActiveXObject) {
+
+                } else {
+                    // Conversión a un objeto XML con propiedades DOM
+                    // para que pueda ser manejado con nuestro código.
+                    // Es decir, que nosotros le pasaremos el texto
+                    // plano y nos lo convertira en objetos DOM para 
+                    // interactuar con ellos. 
+                    // Tal y como haciamos en el JSON, que tenían que ser
+                    // convertidos para ser utilizados
+                    xml = new DOMParser().parseFromString(texto, "text/xml");
+                }
+                // Devolvemos el archivo ya convertido en formato XML
+                return xml;
+            }
+
+            reader.readAsText(fichero);
+        }
+
+        function tratarXML(xml) {
+            var puntos = xml.getElementsByTagName("trkpt");
+            alert("número de puntos: " + puntos.length);
+            var sal = document.getElementById("sal");
+            sal.innerHTML += "<p>Listado de puntos: </p>";
+            var latitud, longitud;
+            for (var i = 0; i < puntos.length; i++) {
+                latitud = puntos[i].getAttributeNode("lat").nodeValue;
+                longitud = puntos[i].getAttributeNode("lon").nodeValue;
+                sal.innerHTML += "latitud: " + latitud + " longitud: " + longitud + "<br>";
+            }
+        }
+
+        function ponpunto(lat, lon) {
+            new google.maps.Marker({
+                postion: new google.maps.LatLng(lat, lon),
+                map: mapa,
+                icon: "punto.png"
+            })
+        }
+
+        window.onload = function () {
+            /**
+             * Cuando haya algún cambio en el botón para añadir el fichero xml
+             * se iniciará la función Leer_Fichero()
+             */
+            document.getElementById("id_fichero").addEventListener('change', Leer_Fichero);
+        }
+    </script>
+</head>
+
+<body>
+    <input type="file" id="id_fichero">
+    <div id="sal"></div>
+</body>
+
+</html>

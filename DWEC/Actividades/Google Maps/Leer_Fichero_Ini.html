@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<meta name="viewport" content="initial-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>Ejemplo de acceso a fichero XML (local)</title>
+     <script type = "text/javascript">
+
+
+    function Leer_Fichero(e) {
+			console.log("e.target.files: ", e.target.files);
+    	var fichero = e.target.files[0];
+
+    	var lector = new FileReader();
+    	lector.onload = function (e) {
+    		tratarFichero(lector.result);
+    	}
+    	lector.readAsText(fichero);	
+    }  // Leer_Fichero 
+
+		const tratarFichero = (contenido)=> {
+			console.log("datos: ", contenido);
+
+		} //  tratarFichero
+
+    
+
+    window.onload = function () {
+    	document.getElementById("id_fichero").addEventListener('change', Leer_Fichero, false);
+    }
+
+    </script>
+  </head>
+
+  <body>
+
+  	<p>
+  		<label for="id_fichero">Selecciona el fichero a leer:</label><br>
+  		<input id="id_fichero" type="file" />
+  	</p>
+
+		<p>
+    <div id="sal">
+			Aquí pongo el contenido del fichero!!!
+    </div>
+    </p>
+
+
+  </body>
+
+</html>
